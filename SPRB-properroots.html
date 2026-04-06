@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #8dc63f; }
+.proj-eyebrow { color:#8dc63f; }
+.proj-eyebrow::before { background:#8dc63f; }
+.sec-label { color:#8dc63f; }
+.sec-label::before { background:#8dc63f; }
+.step-num { color:#8dc63f; }
+.process-step::before { background:#8dc63f; }
+.metric-num { color:#8dc63f; }
+.proj-title em { color:#8dc63f !important; }
+.brief-heading strong { color:#8dc63f; }
+.outcome-statement strong { color:#8dc63f; }
+.f-loc { color:#8dc63f; }
+.merch-cap-drop { color:#8dc63f; }
+.merch-cap-label { color:#8dc63f; }
+.bs-block-label { color:#8dc63f; }
+.bs-block-label::before { background:#8dc63f; }
+.apn-num { color:#8dc63f; }
+.apn-item.active .apn-num { color:#8dc63f; }
+.proj-hero-glow { background:radial-gradient(circle,#8dc63f22 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#8dc63f0a 1px,transparent 1px),linear-gradient(90deg,#8dc63f0a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,162 +358,146 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Brand Identity · Packaging System · Cannabis</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Brand Identity / Packaging / Food & Beverage</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">P</span><span class="char">P</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">P</span><span class="char">P</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span></span>
 <em>Brand Identity</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Proper Roots</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Brand Refresh / Packaging System</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Cannabis / CPG</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Proper Roots</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2023</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Brand Identity / Packaging System</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Food & Beverage / Retail</div></div>
       </div>
-      <p class="proj-tagline">Five stakeholders. Twelve opinions. One direction. The result is a brand that now lives across four product lines and counting.</p>
+      <p class="proj-tagline">Grown from something real. The brand had to feel like the product — honest, grounded, alive.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="hero-cinema-inner"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 01</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-hero.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Proper Roots packaging hero</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Hero / Brand world</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9</div>
 </div></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ -->
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-jars.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">5ml concentrate jar lineup</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand in use — packaging</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
 </div></div>
-    </div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
-    <h2 class="brief-heading">Everyone had a vision. The job was to focus them into something their <strong>audience would actually buy.</strong></h2>
-    <div class="brief-body"><p>Proper Roots came in with a motif, a name, and five stakeholders with five different ideas of what the brand should be. The challenge wasn't design — it was alignment.</p><p>The solution started with 5ml concentrate jars in 12 flavors in early 2025. A focused first drop that proved the system before it scaled. Raised Spot UV on the roots motif was the defining material decision — premium without pretension.</p></div>
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
+    <h2 class="brief-heading">A brand that grows from the <strong>ground up.</strong></h2>
+    <div class="brief-body"><p>Proper Roots is a food and beverage brand built on the idea that real ingredients come from real places. The identity needed to feel earned — not designed. Rooted in craft, not trend.</p><p>The work spanned the full brand system: logo, packaging, color, type, and the rules that hold it all together.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 03</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-flower.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">3.5g flower packaging</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">3</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal reveal-delay-2"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 04</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-slapwood.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Slapwood hash-hole collab SKU</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">4</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
-  <div><div class="step-title">Stakeholder Alignment</div><div class="step-desc">The brief was as much facilitation as design. Five stakeholders, multiple visions, one brand. The process started with understanding what would resonate with their customer before anything was drawn.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
-  <div><div class="step-title">Material Decision First</div><div class="step-desc">Raised Spot UV on the roots motif wasn't an aesthetic choice — it was a strategic one. It set the register for the entire line. Premium without pretension.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
-  <div><div class="step-title">Building the Format System</div><div class="step-desc">Starting with 5ml concentrate jars, the system was built to scale without losing its integrity. Each new format — 3.5g and 7g flower — extended naturally from the same foundation.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
-  <div><div class="step-title">The Slapwood Hash-Hole Collab</div><div class="step-desc">The 2g hash-hole SKU became a collaboration with Slapwood Papers. A collab is a test of any system — does it have enough flex to bring in a partner brand without losing itself? This one did.</div></div>
-</div>
-</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
+  <div><div class="step-title">Brand Discovery</div><div class="step-desc">The name and the product told the story. The work was making sure the visual identity told the same one. Research into the brand's origins, the founder's values, and the competitive shelf.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
+  <div><div class="step-title">Mark and Type System</div><div class="step-desc">A logotype built around roots — literally. The letterforms grow from a shared base. Organic without being rustic. Premium without being cold.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
+  <div><div class="step-title">Packaging Architecture</div><div class="step-desc">The packaging system needed to work across multiple SKUs with different form factors. One identity. Consistent application across every surface.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
+  <div><div class="step-title">Brand Standards</div><div class="step-desc">Delivered as a full brand standards document. Every rule written so that any designer can apply it correctly without a briefing call.</div></div>
+</div></div>
 </section>
 
-<!-- ══ GALLERY SPLIT ══ -->
+<!-- ══ GALLERY ══ -->
 <div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 05</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-display.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Retail display — full lineup</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand in context — retail</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
   <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#0f1a0a;border:1.5px dashed #8dc63f;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 06</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">pr-spotUV-detail.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Raised Spot UV — roots motif detail</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Label detail — print finish</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-    </div></div>
-    </div>
   </div>
 </div>
 
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
-    <div class="outcome-big-num">40</div>
-    <p class="outcome-statement">A <strong>40% sales increase</strong> year over year. Four product lines. Two tiers. Conference presence at Champs and MJ Biz Con. One brand that held through all of it.</p>
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
+    <div class="outcome-big-num">01</div>
+    <p class="outcome-statement">A brand that <strong>looks like it has always existed.</strong> That is the highest compliment in brand identity. Proper Roots earned it.</p>
   </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">40%</div><div class="metric-label">Sales increase vs. pre-rebrand year</div></div>
-<div class="metric-cell reveal"><div class="metric-num">4+</div><div class="metric-label">Product lines — flower, concentrates, pre-rolls, collabs</div></div>
-<div class="metric-cell reveal"><div class="metric-num">2</div><div class="metric-label">Tiers — affordable line + premium THCA</div></div>
-</div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand application — full system</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">01</div><div class="metric-label">Full brand system delivered — identity, packaging, standards</div></div><div class="metric-cell reveal"><div class="metric-num">4+</div><div class="metric-label">SKU packaging designs across the system</div></div><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Brand voice and visual language that scales</div></div></div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#0f1a0a;"><span class="swatch-name">Deep Root</span><span class="swatch-hex">#0f1a0a</span></div>
-<div class="swatch" style="background:#8dc63f;"><span class="swatch-name">Growth Green</span><span class="swatch-hex">#8dc63f</span></div>
-<div class="swatch" style="background:#f5f0e8;"><span class="swatch-name">Cream</span><span class="swatch-hex">#f5f0e8</span></div>
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#0f1a0a;"><span class="swatch-name">Deep Forest</span><span class="swatch-hex">#0f1a0a</span></div><div class="swatch" style="background:#8dc63f;"><span class="swatch-name">Growth Green</span><span class="swatch-hex">#8dc63f</span></div><div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Brand</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="mock-properroots-roots.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><div style="width:100%;height:100%;min-height:180px;background:#0f1a0a;border:1.5px dashed #8dc63f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#8dc63f;opacity:.8;">Slot 09</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Packaging — Detail</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#8dc63f;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
 </div>
-  </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
     </div>
   </div>
 </section>
@@ -477,23 +507,21 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item active"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -541,7 +569,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>

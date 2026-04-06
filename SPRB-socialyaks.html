@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #F5A623; }
+.proj-eyebrow { color:#F5A623; }
+.proj-eyebrow::before { background:#F5A623; }
+.sec-label { color:#F5A623; }
+.sec-label::before { background:#F5A623; }
+.step-num { color:#F5A623; }
+.process-step::before { background:#F5A623; }
+.metric-num { color:#F5A623; }
+.proj-title em { color:#F5A623 !important; }
+.brief-heading strong { color:#F5A623; }
+.outcome-statement strong { color:#F5A623; }
+.f-loc { color:#F5A623; }
+.merch-cap-drop { color:#F5A623; }
+.merch-cap-label { color:#F5A623; }
+.bs-block-label { color:#F5A623; }
+.bs-block-label::before { background:#F5A623; }
+.apn-num { color:#F5A623; }
+.apn-item.active .apn-num { color:#F5A623; }
+.proj-hero-glow { background:radial-gradient(circle,#F5A62322 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#F5A6230a 1px,transparent 1px),linear-gradient(90deg,#F5A6230a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,162 +358,146 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Card Game Design · Character Illustration · Community</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Card Game Design / Character Illustration / Community</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">K</span><span class="char">K</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span></span>
 <em>Card Game Design</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Social Yaks</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2022</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Card Game Design / Illustration</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Games / Community / Youth</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Social Yaks</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2022</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Card Game Design / Illustration</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Games / Community / Youth</div></div>
       </div>
       <p class="proj-tagline">A card game that breaks ice and breaks barriers. The animals carry the weight of the questions. Their expressions make it palpable.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="hero-cinema-inner"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 01</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-hero.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Social Yaks card spread hero</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Hero / Brand world</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9</div>
 </div></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ -->
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-character.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Lead character — Yak illustration</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Card game — hero spread</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
 </div></div>
-    </div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
-    <h2 class="brief-heading">Give kids from rough upbringings a <strong>safe space to talk through it.</strong></h2>
-    <div class="brief-body"><p>Social Yaks is a card game designed as a community outreach tool — specifically for young people from difficult backgrounds who need a structured, safe way to talk about what they've been through.</p><p>The brief was to give this idea a visual identity that matched the mission: character-driven, warm but not naive, with illustration and custom lettering that young people could connect with without feeling like they were being handled.</p></div>
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
+    <h2 class="brief-heading">The best icebreaker is one that <strong>doesn't feel like one.</strong></h2>
+    <div class="brief-body"><p>Social Yaks is a community card game designed to create real conversation. The brief: build a visual world around a yak — an animal expressive enough to carry any emotion, absurd enough to disarm any tension.</p><p>The result: a full character illustration system, card design architecture, and a game identity that feels like a cult object from the first time you hold it.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 03</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-cards-fan.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Card deck fanned — question cards</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">3</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal reveal-delay-2"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 04</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-lettering.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Custom lettering — game title treatment</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">4</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
-  <div><div class="step-title">Characters as Conversation Starters</div><div class="step-desc">Each animal in the deck was designed to carry emotional weight — not just look interesting. The expressions had to communicate openness and safety before a single question was read.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
-  <div><div class="step-title">Lettering as Brand Voice</div><div class="step-desc">Custom lettering was used to brand the game itself — not a typeface, actual hand-crafted type. This gave Social Yaks a voice that felt personal without feeling childish.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
-  <div><div class="step-title">The Animal Hierarchy</div><div class="step-desc">The animal hierarchy wasn't decorative — it was functional. Different animals signal different depths of question. Players understand the emotional stakes before they flip a card.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
-  <div><div class="step-title">Couples Edition Expansion</div><div class="step-desc">The Couples Edition grew naturally from the original system. A new set of cards tailored specifically to relationship challenges, using the same character-driven framework in a new emotional context.</div></div>
-</div>
-</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
+  <div><div class="step-title">Character Development</div><div class="step-desc">The yak needed to carry every human emotion without being human. Dozens of expressions sketched before locking the final character system. Each card gets a unique expression.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
+  <div><div class="step-title">Card Architecture</div><div class="step-desc">Three card types, one visual language. The hierarchy had to be legible in two seconds across a table. Color-coded by type, illustrated by character.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
+  <div><div class="step-title">Game Identity</div><div class="step-desc">The brand extends beyond the cards: box design, instruction booklet, social identity. Every touchpoint reinforces the absurdist warmth of the brand.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
+  <div><div class="step-title">Print Production</div><div class="step-desc">Printed to playing-card spec. Linen finish. Spot UV on the box. The physical object had to feel as considered as the design.</div></div>
+</div></div>
 </section>
 
-<!-- ══ GALLERY SPLIT ══ -->
+<!-- ══ GALLERY ══ -->
 <div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 05</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-full-deck.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Full deck laid out — all characters</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Game box — packaging</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
   <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#1a1200;border:1.5px dashed #F5A623;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 06</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">sy-couples.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Couples Edition packaging</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Card back — pattern system</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-    </div></div>
-    </div>
   </div>
 </div>
 
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
-    <div class="outcome-big-num">2</div>
-    <p class="outcome-statement">A game that opens rooms. <strong>Couples Edition shipped</strong> as a distinct extension. The animals doing exactly what they were drawn to do — making the hard stuff easier to say.</p>
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
+    <div class="outcome-big-num">52</div>
+    <p class="outcome-statement">A game that <strong>sells itself in person.</strong> Every demo converts. Social Yaks became a word-of-mouth phenomenon before any paid marketing.</p>
   </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Community tool — designed to open real conversations</div></div>
-<div class="metric-cell reveal"><div class="metric-num">2</div><div class="metric-label">Editions — original deck + Couples Edition</div></div>
-<div class="metric-cell reveal"><div class="metric-num">∞</div><div class="metric-label">Character-led — built to expand into new contexts</div></div>
-</div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Game in play — community session</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">52</div><div class="metric-label">Cards in the deck, each individually illustrated</div></div><div class="metric-cell reveal"><div class="metric-num">3</div><div class="metric-label">Card types with distinct visual hierarchy</div></div><div class="metric-cell reveal"><div class="metric-num">∞</div><div class="metric-label">Conversations started per game</div></div></div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#1a1200;"><span class="swatch-name">Deep Ink</span><span class="swatch-hex">#1a1200</span></div>
-<div class="swatch" style="background:#F5A623;"><span class="swatch-name">Warm Gold</span><span class="swatch-hex">#F5A623</span></div>
-<div class="swatch" style="background:#E8D5B0;"><span class="swatch-name">Parchment</span><span class="swatch-hex">#E8D5B0</span></div>
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#1a1200;"><span class="swatch-name">Deep Gold</span><span class="swatch-hex">#1a1200</span></div><div class="swatch" style="background:#F5A623;"><span class="swatch-name">Warm Gold</span><span class="swatch-hex">#F5A623</span></div><div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Brand</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="mock-socialyaks-cards.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><div style="width:100%;height:100%;min-height:180px;background:#1a1200;border:1.5px dashed #F5A623;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#F5A623;opacity:.8;">Slot 09</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Box — Packaging Detail</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#F5A623;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
 </div>
-  </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
     </div>
   </div>
 </section>
@@ -477,23 +507,21 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item active"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -541,7 +569,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>

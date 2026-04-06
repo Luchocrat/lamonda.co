@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #BCA048; }
+.proj-eyebrow { color:#BCA048; }
+.proj-eyebrow::before { background:#BCA048; }
+.sec-label { color:#BCA048; }
+.sec-label::before { background:#BCA048; }
+.step-num { color:#BCA048; }
+.process-step::before { background:#BCA048; }
+.metric-num { color:#BCA048; }
+.proj-title em { color:#BCA048 !important; }
+.brief-heading strong { color:#BCA048; }
+.outcome-statement strong { color:#BCA048; }
+.f-loc { color:#BCA048; }
+.merch-cap-drop { color:#BCA048; }
+.merch-cap-label { color:#BCA048; }
+.bs-block-label { color:#BCA048; }
+.bs-block-label::before { background:#BCA048; }
+.apn-num { color:#BCA048; }
+.apn-item.active .apn-num { color:#BCA048; }
+.proj-hero-glow { background:radial-gradient(circle,#BCA04822 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#BCA0480a 1px,transparent 1px),linear-gradient(90deg,#BCA0480a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,141 +358,125 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Brand Identity / Logo Design / Cannabis</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Brand Identity / Logo Design / Cannabis</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">P</span><span class="char">P</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">W</span><span class="char">W</span></span><span class="ransom-letter"><span class="ghost">N</span><span class="char">N</span></span></span>
 <em>Brand Identity</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Jason Werth / MLB</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024, Ongoing</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Brand Identity / Logo</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Cannabis / Premium CPG</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Jason Werth / MLB</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024, Ongoing</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Brand Identity / Logo</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Cannabis / Premium CPG</div></div>
       </div>
       <p class="proj-tagline">Two designers. Thirteen options. Nothing landed. The brand needed a foundation, not a revision.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><img src="tc-horses.jpg" alt="Triple Crown brand imagery — horses" class="img-fill" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;"></div>
+    <div class="hero-cinema-inner"><img src="tc-horses.jpg" alt="Triple Crown — horses at golden hour" style="width:100%;height:100%;object-fit:cover;"></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ --> 
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#0E2244;border:1.5px dashed #BCA048;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#0E2244;border:1.5px dashed #BCA048;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#BCA048;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">tc-gear-black.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Clothing / merch application</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Identity application</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
 </div></div>
-    </div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
     <h2 class="brief-heading">Brands built on a person need to carry that <strong>person's weight.</strong></h2>
     <div class="brief-body"><p>Triple Crown is Jason Werth's brand. Former Major League Baseball. A career built on precision, pressure, and performance. The identity had to carry all of that before it carried anything else.</p><p>Two designers. Thirteen options. Nothing landed. The brand arrived needing a foundation, not a revision. The ask was a graphic identity worthy of the name. From scratch.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><img src="tc-locker.jpg" alt="Triple Crown — locker room" class="img-fill" style="width:100%;height:100%;object-fit:cover;"></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><img src="tc-flowers.jpg" alt="Triple Crown — brand imagery" class="img-fill" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;"></div>
-  </div>
+  <div class="pair-img reveal"><img src="tc-locker.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div class="pair-img reveal reveal-delay-2"><img src="tc-flowers.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
   <div><div class="step-title">Direction Before Drawing</div><div class="step-desc">Thirteen failed options tell you the problem is not execution — it is direction. Before a single mark was drawn, the work was understanding what Triple Crown needed to stand for. Not what it needed to look like.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
   <div><div class="step-title">Building the Mark</div><div class="step-desc">No borrowed elements. No shortcuts. The logo was built from the ground up: a graphic identity carrying the heritage of baseball, the ambition of premium cannabis, and the weight of a name.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
   <div><div class="step-title">System and Launch</div><div class="step-desc">The identity launched with two initial SKUs. Enough to establish the visual language and prove the system before expansion into the full product lineup.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
   <div><div class="step-title">The Black Line</div><div class="step-desc">Currently in development: the Black Line. A premium top-tier strain in glass jars for 3.5g and 7g. The identity built for one had to be built to carry many.</div></div>
-</div>
-</div>
+</div></div>
 </section>
 
-<!-- ══ GALLERY SPLIT ══ -->
+<!-- ══ GALLERY ══ -->
 <div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><div class="img-ph" style="background:#0E2244;border:1.5px dashed #BCA048;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#BCA048;opacity:.8;">Slot 05</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">tc-tin-large.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Large tin packaging hero</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#0E2244;border:1.5px dashed #BCA048;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#BCA048;opacity:.8;">Slot 03</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Large tin packaging hero</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
   <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><img src="tc-tin-small.png" alt="Triple Crown small tin" class="img-fill" style="width:100%;height:100%;object-fit:cover;"></div>
-    </div></div>
-    </div>
+    <div class="gallery-right-top reveal reveal-delay-1"><img src="tc-tin-small.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
   </div>
 </div>
 
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
     <div class="outcome-big-num">13</div>
     <p class="outcome-statement">Launched successfully where <strong>thirteen previous attempts</strong> had not. Triple Crown now carries the weight it was always meant to carry. The Black Line is next.</p>
   </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">13</div><div class="metric-label">Previous options that did not land before this one did</div></div>
-<div class="metric-cell reveal"><div class="metric-num">2</div><div class="metric-label">SKUs launched at brand debut</div></div>
-<div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Identity system built to scale into premium Black Line expansion</div></div>
-</div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#0E2244;border:1.5px dashed #BCA048;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#BCA048;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand in use — product lineup</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">13</div><div class="metric-label">Previous options that did not land before this one did</div></div><div class="metric-cell reveal"><div class="metric-num">2</div><div class="metric-label">SKUs launched at brand debut</div></div><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Identity system built to scale into premium Black Line expansion</div></div></div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#0E4174;"><span class="swatch-name">Royale Blue</span><span class="swatch-hex">#0E4174</span></div>
-<div class="swatch" style="background:#BCA048;"><span class="swatch-name">Crown Gold</span><span class="swatch-hex">#BCA048</span></div>
-<div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div>
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#0E4174;"><span class="swatch-name">Royale Blue</span><span class="swatch-hex">#0E4174</span></div><div class="swatch" style="background:#BCA048;"><span class="swatch-name">Crown Gold</span><span class="swatch-hex">#BCA048</span></div><div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Wordmark</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="mock-tc-field.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="tc-tin-small.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
 </div>
-  </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
     </div>
   </div>
 </section>
+
 
 <section class="merch-section">
   <div class="merch-header reveal">
@@ -455,34 +485,32 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <p class="merch-sub">Five limited drops. Navy &amp; army. Gothic streetwear meets premium cannabis culture.</p>
   </div>
   <div class="merch-grid">
-    <div class="merch-item reveal reveal-delay-1"><div class="merch-img-wrap" style="background:#0E4174;"><img src="tc-hoodie-v1.png" alt="Gold Crest — Navy" class="merch-img" loading="lazy"></div><div class="merch-caption"><span class="merch-cap-label">Drop 01</span><span class="merch-cap-name">Gold Crest — Navy</span></div></div>
-    <div class="merch-item reveal reveal-delay-2"><div class="merch-img-wrap" style="background:#3a3318;"><img src="tc-hoodie-v2.png" alt="Monogram AOP — Army" class="merch-img" loading="lazy"></div><div class="merch-caption"><span class="merch-cap-label">Drop 02</span><span class="merch-cap-name">Monogram AOP — Army</span></div></div>
-    <div class="merch-item reveal reveal-delay-3"><div class="merch-img-wrap" style="background:#2d2910;"><img src="tc-hoodie-v3.png" alt="Tonal Chest — Army" class="merch-img" loading="lazy"></div><div class="merch-caption"><span class="merch-cap-label">Drop 03</span><span class="merch-cap-name">Tonal Chest — Army</span></div></div>
-    <div class="merch-item reveal reveal-delay-1"><div class="merch-img-wrap" style="background:#08194d;"><img src="tc-hoodie-v4.png" alt="Cloud Storm — Navy" class="merch-img" loading="lazy"></div><div class="merch-caption"><span class="merch-cap-label">Drop 04</span><span class="merch-cap-name">Cloud Storm — Navy</span></div></div>
-    <div class="merch-item reveal reveal-delay-2"><div class="merch-img-wrap" style="background:#0d0834;"><img src="tc-hoodie-v5.png" alt="Royal Knight — Navy" class="merch-img" loading="lazy"></div><div class="merch-caption"><span class="merch-cap-label">Drop 05</span><span class="merch-cap-name">Royal Knight — Navy</span></div></div>
+    <div class="merch-item reveal"><div class="merch-img-wrap"><img src="tc-hoodie-v1.png" alt="Gold Crest hoodie" style="width:100%;height:100%;object-fit:contain;"></div><div class="merch-cap"><div class="merch-cap-drop">Drop 01</div><div class="merch-cap-label">Gold Crest — Navy</div></div></div>
+    <div class="merch-item reveal reveal-delay-1"><div class="merch-img-wrap"><img src="tc-hoodie-v2.png" alt="Monogram AOP hoodie" style="width:100%;height:100%;object-fit:contain;"></div><div class="merch-cap"><div class="merch-cap-drop">Drop 02</div><div class="merch-cap-label">Monogram AOP — Army</div></div></div>
+    <div class="merch-item reveal reveal-delay-2"><div class="merch-img-wrap"><img src="tc-hoodie-v3.png" alt="Tonal Chest hoodie" style="width:100%;height:100%;object-fit:contain;"></div><div class="merch-cap"><div class="merch-cap-drop">Drop 03</div><div class="merch-cap-label">Tonal Chest — Army</div></div></div>
+    <div class="merch-item reveal reveal-delay-3"><div class="merch-img-wrap"><img src="tc-hoodie-v4.png" alt="Cloud Storm hoodie" style="width:100%;height:100%;object-fit:contain;"></div><div class="merch-cap"><div class="merch-cap-drop">Drop 04</div><div class="merch-cap-label">Cloud Storm — Navy</div></div></div>
+    <div class="merch-item reveal reveal-delay-4"><div class="merch-img-wrap"><img src="tc-hoodie-v5.png" alt="Royal Knight hoodie" style="width:100%;height:100%;object-fit:contain;"></div><div class="merch-cap"><div class="merch-cap-drop">Drop 05</div><div class="merch-cap-label">Royal Knight — Navy</div></div></div>
   </div>
 </section>
 
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item active"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item active"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -530,7 +558,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>

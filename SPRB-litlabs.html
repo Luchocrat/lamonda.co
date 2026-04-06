@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #9b59b6; }
+.proj-eyebrow { color:#9b59b6; }
+.proj-eyebrow::before { background:#9b59b6; }
+.sec-label { color:#9b59b6; }
+.sec-label::before { background:#9b59b6; }
+.step-num { color:#9b59b6; }
+.process-step::before { background:#9b59b6; }
+.metric-num { color:#9b59b6; }
+.proj-title em { color:#9b59b6 !important; }
+.brief-heading strong { color:#9b59b6; }
+.outcome-statement strong { color:#9b59b6; }
+.f-loc { color:#9b59b6; }
+.merch-cap-drop { color:#9b59b6; }
+.merch-cap-label { color:#9b59b6; }
+.bs-block-label { color:#9b59b6; }
+.bs-block-label::before { background:#9b59b6; }
+.apn-num { color:#9b59b6; }
+.apn-item.active .apn-num { color:#9b59b6; }
+.proj-hero-glow { background:radial-gradient(circle,#9b59b622 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#9b59b60a 1px,transparent 1px),linear-gradient(90deg,#9b59b60a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,156 +358,131 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Sub-Brand Identity / Mylar Packaging / Cannabis</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Sub-Brand Identity / Mylar Packaging / Cannabis</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">B</span><span class="char">B</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span></span>
 <em>High Dose Line</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Lit Labs</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Sub-Brand Identity / Mylar Bag System</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Cannabis / CPG</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Lit Labs</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Sub-Brand Identity / Mylar Bag System</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Cannabis / CPG</div></div>
       </div>
       <p class="proj-tagline">A sub-brand with enough visual force to own the shelf. Built from a custom graphic system, premium finishes, and hand-crafted type.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><div class="img-ph" style="background:#1a0a2e;border:1.5px dashed #9b59b6;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="hero-cinema-inner"><div style="width:100%;height:100%;min-height:180px;background:#1a0a2e;border:1.5px dashed #9b59b6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 01</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">ll-lowdose.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Low Dose Tropical Medley — hero shot</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Hero / Brand world</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9</div>
 </div></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ -->
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#1a0a2e;border:1.5px dashed #9b59b6;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">ll-heavydose-clementine.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Heavy Dose Clementine Crush</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
-</div></div>
-    </div>
+    <div class="brief-img"><img src="ll-heavydosefresa.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
-    <h2 class="brief-heading">A sub-brand needs its own <strong>visual authority.</strong></h2>
-    <div class="brief-body"><p>Lit Labs needed a line identity for their High Dose gummies that pushed harder than the parent brand. Not a variation — a sub-brand with enough visual force to own the shelf independently while remaining unmistakably Lit Labs.</p><p>The delivery format was mylar bags. The system had to work across Low Dose, Heavy Dose, Super Sour, Live Resin, and Liquid Diamonds. Five distinct lines, one coherent language.</p></div>
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
+    <h2 class="brief-heading">When the parent brand is quiet, the sub-brand has to <strong>scream.</strong></h2>
+    <div class="brief-body"><p>Lit Labs needed a High Dose sub-line that could stand apart from the parent brand on shelf. Louder. More graphic. Immediately distinct. The solution: a custom illustrated system with holographic foil finishes and hand-drawn type that makes every SKU feel collectible.</p><p>Six SKUs at launch. Each one a different flavor. Each one the same visual weight.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a0a2e;border:1.5px dashed #9b59b6;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal"><div style="width:100%;height:100%;min-height:180px;background:#1a0a2e;border:1.5px dashed #9b59b6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 03</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">ll-supersour.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Super Sour — hand lettering detail</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">3</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a0a2e;border:1.5px dashed #9b59b6;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal reveal-delay-2"><div style="width:100%;height:100%;min-height:180px;background:#1a0a2e;border:1.5px dashed #9b59b6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 04</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">ll-liveresin.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Live Resin packaging</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">4</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
-  <div><div class="step-title">The Bar System</div><div class="step-desc">A custom graphic element built specifically for this line — not borrowed from the parent brand. The bar system became the structural backbone of every SKU in the High Dose lineup.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
-  <div><div class="step-title">Premium Finish Combination</div><div class="step-desc">Spot UV and metallic knockout applied to mylar. The combination creates depth photography cannot fully capture. You understand this packaging by holding it.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
-  <div><div class="step-title">Super Sour — Hand Lettering</div><div class="step-desc">Super Sour became the platform for custom script lettering as the line identity. Hand-crafted type with metallic knockout — a SKU that commands the shelf without saying a word.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
-  <div><div class="step-title">System Across Five Lines</div><div class="step-desc">Low Dose, Heavy Dose, Super Sour, Live Resin, Liquid Diamonds. Five product lines, each with its own personality, all speaking the same visual language.</div></div>
-</div>
-</div>
-</section>
-
-<!-- ══ GALLERY SPLIT ══ -->
-<div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><img src="ll-heavydosefresa.png" alt="Lit Labs Heavy Dose Fresa" class="img-fill" style="width:100%;height:100%;object-fit:contain;padding:8px;"></div>
-  </div>
-  <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#1a0a2e;border:1.5px dashed #9b59b6;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 06</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">ll-lineup.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Full 5-line lineup on shelf</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
+  <div><div class="step-title">Sub-Brand Architecture</div><div class="step-desc">The High Dose line needed to live inside the Lit Labs world while asserting its own identity. Color, type, and illustration system built from scratch — referencing the parent without copying it.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
+  <div><div class="step-title">Custom Illustration System</div><div class="step-desc">Each SKU gets a unique illustrated element tied to the flavor profile. Hand-drawn. No stock. Every bag earns its shelf space visually.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
+  <div><div class="step-title">Holographic Finish Strategy</div><div class="step-desc">The foil finish is not decorative — it is structural. It signals premium in a format where every brand is trying to look premium. Done right, it reads different.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
+  <div><div class="step-title">SKU Rollout</div><div class="step-desc">Six SKUs at launch. System designed to scale to twelve without a redesign. Every future flavor drops into the grid.</div></div>
 </div></div>
-    </div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
-    <div class="outcome-big-num">5</div>
-    <p class="outcome-statement">Five lines. One language. The High Dose system positioned Lit Labs <strong>above the standard of the category.</strong> The craft you feel before you open it.</p>
-  </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">5</div><div class="metric-label">Product lines in the system</div></div>
-<div class="metric-cell reveal"><div class="metric-num">2</div><div class="metric-label">Premium finishes on every SKU</div></div>
-<div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Custom lettering sub-brand launched</div></div>
-</div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#1a0a2e;"><span class="swatch-name">Deep Purple</span><span class="swatch-hex">#1a0a2e</span></div>
-<div class="swatch" style="background:#9b59b6;"><span class="swatch-name">Electric Violet</span><span class="swatch-hex">#9b59b6</span></div>
-<div class="swatch" style="background:#F5C842;"><span class="swatch-name">Gold Foil</span><span class="swatch-hex">#F5C842</span></div>
-</div>
+<!-- ══ GALLERY ══ -->
+<div class="gallery-section">
+  <div class="gallery-left reveal"><img src="ll-heavydosefresa.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div class="gallery-right">
+    <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#1a0a2e;border:1.5px dashed #9b59b6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 06</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Super Sour — holographic detail</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
   </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
+</div>
+
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
+    <div class="outcome-big-num">6</div>
+    <p class="outcome-statement"><strong>Six SKUs, zero reprints.</strong> The system held first time. The High Dose line became the fastest-moving sub-brand in the Lit Labs catalog.</p>
+  </div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#1a0a2e;border:1.5px dashed #9b59b6;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#9b59b6;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Full lineup — retail shelf</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#9b59b6;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">6</div><div class="metric-label">SKUs launched in first drop</div></div><div class="metric-cell reveal"><div class="metric-num">0</div><div class="metric-label">Reprints — system held on first run</div></div><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Sub-brand system built to scale to 12+ SKUs</div></div></div>
+</section>
+
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#1a0a2e;"><span class="swatch-name">Deep Purple</span><span class="swatch-hex">#1a0a2e</span></div><div class="swatch" style="background:#9b59b6;"><span class="swatch-name">Brand Purple</span><span class="swatch-hex">#9b59b6</span></div><div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Brand</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="mock-litlabs-lab.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="ll-heavydosefresa.png" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+</div>
     </div>
   </div>
 </section>
@@ -471,23 +492,21 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item active"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -535,7 +554,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>

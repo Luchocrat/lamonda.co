@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #E63946; }
+.proj-eyebrow { color:#E63946; }
+.proj-eyebrow::before { background:#E63946; }
+.sec-label { color:#E63946; }
+.sec-label::before { background:#E63946; }
+.step-num { color:#E63946; }
+.process-step::before { background:#E63946; }
+.metric-num { color:#E63946; }
+.proj-title em { color:#E63946 !important; }
+.brief-heading strong { color:#E63946; }
+.outcome-statement strong { color:#E63946; }
+.f-loc { color:#E63946; }
+.merch-cap-drop { color:#E63946; }
+.merch-cap-label { color:#E63946; }
+.bs-block-label { color:#E63946; }
+.bs-block-label::before { background:#E63946; }
+.apn-num { color:#E63946; }
+.apn-item.active .apn-num { color:#E63946; }
+.proj-hero-glow { background:radial-gradient(circle,#E6394622 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#E639460a 1px,transparent 1px),linear-gradient(90deg,#E639460a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,162 +358,151 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Lettering for Branding / City Events / Illustration</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Lettering for Branding / City Events / Illustration</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">K</span><span class="char">K</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">B</span><span class="char">B</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span><span class="ransom-letter"><span class="ghost">N</span><span class="char">N</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span></span>
 <em>Fourth of July</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Village of Key Biscayne</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Lettering / Illustration / Event Branding</div></div><div class="spec"><div class="spec-label">Collab</div><div class="spec-value">Rocketdog Creative Studio</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Village of Key Biscayne</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2024</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Lettering / Illustration / Event Branding</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Government / Events / Community</div></div>
       </div>
       <p class="proj-tagline">The most luxurious village south of Miami throws the most serious Fourth of July parade in the state. 64 editions deserved a visual identity to match.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="hero-cinema-inner"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 01</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-banner.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">KB4J — hero banner illustration</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Hero / Brand world</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9</div>
 </div></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ -->
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-tarot-poster.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Tarot card framed poster edition</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Parade poster — hero</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
 </div></div>
-    </div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
-    <h2 class="brief-heading">The most prestigious Fourth of July parade in Florida needed a <strong>visual identity worthy of it.</strong></h2>
-    <div class="brief-body"><p>Key Biscayne is the southernmost incorporated village in the continental United States. The annual Fourth of July parade is a civic institution — 64 editions deep, beloved by residents who live on one of the most valuable stretches of real estate in the country.</p><p>Working with Rocketdog Creative Studio, the direction landed on tarot — a surprising but precise choice. The Cape Florida Lighthouse, tropical blooms, and the heritage of the event all resolved into a single tarot card illustration system built to extend.</p></div>
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
+    <h2 class="brief-heading">A commemorative identity for a <strong>64-year tradition.</strong></h2>
+    <div class="brief-body"><p>Key Biscayne is the southernmost incorporated village in the continental United States. The annual Fourth of July parade is a civic institution — Floridians only. Attended by residents who live in one of the most valuable stretches of real estate in the country.</p><p>Working with Rocketdog Creative Studio, the directive landed us here — a surprising but correct choice. The Cape Florida Lighthouse, tropical forever, and the heritage of the event all resolved into a single island event illustration system built to extend.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 03</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-street-sign.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Street sign application</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">3</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal reveal-delay-2"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 04</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-beach-bag.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Beach bag with illustration system</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">4</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
-  <div><div class="step-title">Finding the Right Register</div><div class="step-desc">Key Biscayne is not the kind of client that wants loud. The visual language needed to communicate prestige and celebration simultaneously — a specific tonal balance that tarot as a framework handled perfectly.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
-  <div><div class="step-title">Lighthouse and Tropical Blooms</div><div class="step-desc">The Cape Florida Lighthouse is the defining landmark of the village. Combined with tropical blooms and the tarot format, the visual language became specific to this place and this moment.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
-  <div><div class="step-title">Custom Lettering as the Voice</div><div class="step-desc">The lettering composition carried the edition number — 64th Annual — with the same weight as the illustration. Hand-lettered type that felt like an heirloom, not a poster.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
-  <div><div class="step-title">Across Every Surface</div><div class="step-desc">The system extended beyond the hero illustration: beach bags, street signage, framed poster editions, and parade collateral. One visual language, every touchpoint.</div></div>
-</div>
-</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
+  <div><div class="step-title">Finding the Right Register</div><div class="step-desc">The event is serious. Key Biscayne residents do not want whimsy. They want craft. The lettering direction had to feel hand-done and institutional at once — the kind of thing that looks better every year.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
+  <div><div class="step-title">Lighthouse and Tropical Blooms</div><div class="step-desc">The Cape Florida Lighthouse is the anchor. Around it: tropical botanical illustration, the ocean, the sky. Every element chosen for legibility at banner scale and intimacy at program scale.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
+  <div><div class="step-title">Custom Lettering on the Voice</div><div class="step-desc">The logotype is hand-lettered. Not a font, not close to a font. Every letterform built for this event, this edition, this year. Built to evolve with each edition.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
+  <div><div class="step-title">Across Every Surface</div><div class="step-desc">Street banners, tote bags, trucker hats, parade programs, commemorative prints. The identity scales from a 3-foot banner to a 2-inch button without losing a single line.</div></div>
+</div></div>
 </section>
 
-<!-- ══ GALLERY SPLIT ══ -->
+<!-- ══ GALLERY ══ -->
 <div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 05</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-illustration-full.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Full tarot card illustration — hero artwork</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Tote bag — merchandise</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
   <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#002244;border:1.5px dashed #E63946;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 06</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">kb-collateral.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Parade collateral spread</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Trucker hat — Parade Red</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-    </div></div>
-    </div>
   </div>
 </div>
 
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
     <div class="outcome-big-num">64</div>
     <p class="outcome-statement">A commemorative identity for a <strong>64-year tradition.</strong> Collectible by design. The kind of work a community keeps.</p>
   </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">64</div><div class="metric-label">Annual edition — a parade with real history</div></div>
-<div class="metric-cell reveal"><div class="metric-num">3+</div><div class="metric-label">Formats — bags, signage, poster, collateral</div></div>
-<div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Tarot card illustration system — built to expand</div></div>
-</div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Identity in situ — parade day</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">64</div><div class="metric-label">Editions of the parade — this identity honors all of them</div></div><div class="metric-cell reveal"><div class="metric-num">3+</div><div class="metric-label">Merchandise SKUs designed for the event</div></div><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Visual system built to evolve annually</div></div></div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#002244;"><span class="swatch-name">Navy Blue</span><span class="swatch-hex">#002244</span></div>
-<div class="swatch" style="background:#E63946;"><span class="swatch-name">Parade Red</span><span class="swatch-hex">#E63946</span></div>
-<div class="swatch" style="background:#f5f0e8;"><span class="swatch-name">Parchment</span><span class="swatch-hex">#f5f0e8</span></div>
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#002244;"><span class="swatch-name">Deep Navy</span><span class="swatch-hex">#002244</span></div><div class="swatch" style="background:#E63946;"><span class="swatch-name">Parade Red</span><span class="swatch-hex">#E63946</span></div><div class="swatch" style="background:#F5F5DC;"><span class="swatch-name">Bone White</span><span class="swatch-hex">#F5F5DC</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Brand</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 08</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Street Banner — Event</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 09</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Parade Program — Print</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
 </div>
-  </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
     </div>
   </div>
 </section>
@@ -477,23 +512,21 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item active"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -541,7 +574,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>

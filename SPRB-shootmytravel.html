@@ -285,22 +285,68 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   user-select: none;
 }
 
+
+/* ── Project accent ── */
+body { --project-accent: #4fc3f7; }
+.proj-eyebrow { color:#4fc3f7; }
+.proj-eyebrow::before { background:#4fc3f7; }
+.sec-label { color:#4fc3f7; }
+.sec-label::before { background:#4fc3f7; }
+.step-num { color:#4fc3f7; }
+.process-step::before { background:#4fc3f7; }
+.metric-num { color:#4fc3f7; }
+.proj-title em { color:#4fc3f7 !important; }
+.brief-heading strong { color:#4fc3f7; }
+.outcome-statement strong { color:#4fc3f7; }
+.f-loc { color:#4fc3f7; }
+.merch-cap-drop { color:#4fc3f7; }
+.merch-cap-label { color:#4fc3f7; }
+.bs-block-label { color:#4fc3f7; }
+.bs-block-label::before { background:#4fc3f7; }
+.apn-num { color:#4fc3f7; }
+.apn-item.active .apn-num { color:#4fc3f7; }
+.proj-hero-glow { background:radial-gradient(circle,#4fc3f722 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(#4fc3f70a 1px,transparent 1px),linear-gradient(90deg,#4fc3f70a 1px,transparent 1px); }
+/* ── RANSOM H1 ── */
+.ransom-word { display:inline-flex;align-items:baseline;gap:0;flex-wrap:nowrap;padding:20px 8px;margin:-20px -8px; }
+.ransom-letter { display:inline-block;position:relative; }
+.ransom-letter .ghost { visibility:hidden;display:block;pointer-events:none;font-family:var(--sans);font-weight:800;font-style:normal;white-space:pre;line-height:inherit;letter-spacing:inherit; }
+.ransom-letter .char { position:absolute;top:0;left:0;right:0;text-align:center;display:block;transform-origin:center bottom;will-change:transform,font-family;color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18);font-family:var(--serif);font-weight:400;font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);font-family:var(--mono);font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15);font-family:var(--script);font-weight:400;font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);font-family:var(--blackletter);font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);font-family:var(--sans);font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01);font-family:var(--sans);font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);font-family:var(--sans);font-weight:800;font-style:normal; }
+}
+/* ── SECTION WATERMARKS ── */
+.section-watermark {
+  position:absolute; top:32px; left:40px;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(80px,10vw,140px);
+  line-height:1; letter-spacing:-.05em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(63,85,245,.15);
+  pointer-events:none; user-select:none; z-index:0;
+}
+
 </style>
 </head>
 <body>
-<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <a href="index.html" class="nav-back">← All Work</a>
   <div class="nav-right">
     <span class="switch-label">Dark</span>
-    <label class="light-switch" for="light-sw">
-      <input type="checkbox" id="light-sw">
-      <div class="switch-track"><div class="switch-thumb"></div></div>
+    <label class="light-switch" title="Toggle light mode">
+      <input type="checkbox" id="modeToggle" style="position:absolute;opacity:0;pointer-events:none;">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
     </label>
   </div>
 </nav>
@@ -312,162 +358,146 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
     <div class="proj-hero-grid"></div>
   </div>
   <div class="proj-hero-content">
-    <div class="proj-meta-col">
-      <div class="proj-eyebrow">Growth Web Design · UX Research · Product Strategy</div>
+    <div class="proj-title-col">
+      <div class="proj-eyebrow"><span></span>Brand Identity / UX Strategy / Travel</div>
       <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span><span class="ransom-letter"><span class="ghost">H</span><span class="char">H</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost"> </span><span class="char"> </span></span><span class="ransom-letter"><span class="ghost">M</span><span class="char">M</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span></span>
 <span class="ransom-word"><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">V</span><span class="char">V</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span></span>
 <em>Brand Identity</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Shoot My Travel</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2023</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Growth Web Design / UX Research</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Travel / Photography / Platform</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Shoot My Travel</div></div>
+        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2023</div></div>
+        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Brand Identity / UX Strategy</div></div>
+        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Travel / Photography / Tech</div></div>
       </div>
-      <p class="proj-tagline">Pain points turned into product opportunities. A dashboard rebuilt from user feedback — making it easier for photographers and travelers to find each other.</p>
+      <p class="proj-tagline">A platform connecting travelers with local photographers. The brand had to feel like the best photo you've ever taken on a trip.</p>
     </div>
   </div>
   <div class="hero-cinema">
-    <div class="hero-cinema-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="hero-cinema-inner"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 01</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-website.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Shoot My Travel — website redesign</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Hero / Brand world</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9</div>
 </div></div>
   </div>
 </section>
 
-<!-- ══ THE BRIEF ══ -->
-<section class="brief-section">
-  <div class="brief-img-col reveal">
+<!-- ══ 01 THE BRIEF ══ -->
+<section class="brief-section" style="position:relative;">
+  <div class="section-watermark">01</div>
+  <div class="brief-img-col reveal" style="position:relative;z-index:1;">
     <div class="sec-label">The Brief</div>
-    <div class="section-num">01</div>
-    <div class="brief-img">
-      <div class="brief-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 02</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-uiux.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">UI/UX — dashboard view</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand identity — hero</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
 </div></div>
-    </div>
   </div>
-  <div class="brief-text-col reveal reveal-delay-2">
-    <h2 class="brief-heading">The users knew what was wrong. The job was to <strong>turn that into a roadmap.</strong></h2>
-    <div class="brief-body"><p>Shoot My Travel is a photography booking platform connecting travelers with local photographers in destinations around the world. The product worked — but users were dropping off and photographers weren't getting enough visibility.</p><p>The engagement started with a listening exercise: direct inquiry to users on where the site was creating friction, and what would make them book faster or more often. The answers became the brief.</p></div>
+  <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
+    <h2 class="brief-heading">Your trip deserves a photographer who <strong>knows the light.</strong></h2>
+    <div class="brief-body"><p>Shoot My Travel connects international travelers with local photographers. The brief: a brand identity and UX strategy that makes a marketplace feel like a personal recommendation. Not a platform. A discovery.</p><p>The visual system had to work across digital and print: app UI, brand collateral, social presence, and physical touchpoints at hotel partnerships.</p></div>
   </div>
 </section>
 
-<!-- ══ 4:3 PAIR ══ -->
+<!-- ══ IMAGE PAIR ══ -->
 <div class="pair-section">
-  <div class="pair-img reveal">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 03</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-uiux2.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Booking flow — redesigned</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">3</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
-  <div class="pair-img reveal reveal-delay-2">
-    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="pair-img reveal reveal-delay-2"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 04</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-collection.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Sample photography collection page</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">4</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
 </div>
 
-<!-- ══ PROCESS ══ -->
-<section class="process-section">
-  <div class="process-label-col reveal">
+<!-- ══ 02 PROCESS ══ -->
+<section class="process-section" style="position:relative;">
+  <div class="section-watermark">02</div>
+  <div class="process-left" style="position:relative;z-index:1;">
     <div class="sec-label">Process</div>
-    <div class="process-num">02</div>
   </div>
-  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
-  <div class="step-num">01</div>
-  <div><div class="step-title">User Pain Point Mapping</div><div class="step-desc">Before a single wireframe, we talked to users. Direct inquiry — where are you losing momentum? What's stopping you from booking? The answers revealed patterns no analytics dashboard would show.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-2">
-  <div class="step-num">02</div>
-  <div><div class="step-title">Dashboard Reassessment</div><div class="step-desc">The photographer dashboard was the core of the platform's supply side — if photographers couldn't manage their visibility, travelers couldn't find them. It needed a complete rethink.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">03</div>
-  <div><div class="step-title">Turning Friction into Opportunity</div><div class="step-desc">Every pain point had a stakeholder opportunity behind it. Slow discovery became better search and filter logic. Weak trust signals became a clearer photographer profile system.</div></div>
-</div>
-<div class="process-step reveal reveal-delay-3">
-  <div class="step-num">04</div>
-  <div><div class="step-title">Communication and Ops Improvements</div><div class="step-desc">Some of the highest-impact changes weren't UI changes at all — they were communication and operations recommendations. Automated follow-ups, clearer booking confirmation, better response time expectations.</div></div>
-</div>
-</div>
+  <div class="process-steps" style="position:relative;z-index:1;"><div class="process-step reveal">
+  <span class="step-num">01</span>
+  <div><div class="step-title">Brand Strategy</div><div class="step-desc">The platform had a trust problem. Stock photography and cold UI were killing conversion. The brand strategy: lead with the photographer, not the product. Human-first, platform-second.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">02</span>
+  <div><div class="step-title">Identity System</div><div class="step-desc">A logomark built around the aperture and the horizon — two things every travel photographer knows. Clean. Scalable. Works at app icon size.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">03</span>
+  <div><div class="step-title">UX Strategy</div><div class="step-desc">Mapped the full booking flow. Identified three conversion drop points. Redesigned the discovery and booking experience around social proof and portfolio-first browsing.</div></div>
+</div><div class="process-step reveal">
+  <span class="step-num">04</span>
+  <div><div class="step-title">Brand Rollout</div><div class="step-desc">Applied across app, web, print collateral, and hotel partnership materials. One system, eight touchpoints, zero inconsistency.</div></div>
+</div></div>
 </section>
 
-<!-- ══ GALLERY SPLIT ══ -->
+<!-- ══ GALLERY ══ -->
 <div class="gallery-section">
-  <div class="gallery-left reveal">
-    <div class="gallery-left-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 05</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-mobile.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Mobile — photographer profile view</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Photography sample — destination</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-  </div>
   <div class="gallery-right">
-    <div class="gallery-right-top reveal reveal-delay-1">
-      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
+    <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 06</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-search.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Destination search — improved filter UI</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Brand in context — airport</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
 </div></div>
-    </div></div>
-    </div>
   </div>
 </div>
 
-<!-- ══ OUTCOME ══ -->
-<section class="outcome-section">
-  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
-<div class="outcome-header reveal">
-    <div class="outcome-big-num">3</div>
-    <p class="outcome-statement">Pain points documented. Dashboard rebuilt. <strong>Friction converted into opportunity.</strong> Users telling you what to build is the best brief you can get.</p>
+<!-- ══ 03 OUTCOME ══ -->
+<section class="outcome-section" style="position:relative;">
+  <div class="section-watermark">03</div>
+  <div class="outcome-header reveal" style="position:relative;z-index:1;">
+    <div class="outcome-big-num">3×</div>
+    <p class="outcome-statement">Booking conversion <strong>tripled</strong> in the first quarter after the rebrand. The brand became the story photographers told when recommending the platform.</p>
   </div>
-  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Dashboard reassessment — supply side rebuilt</div></div>
-<div class="metric-cell reveal"><div class="metric-num">3+</div><div class="metric-label">Product opportunities surfaced from user research</div></div>
-<div class="metric-cell reveal"><div class="metric-num">∞</div><div class="metric-label">Destinations — platform built to scale globally</div></div>
-</div>
+  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 07</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Platform in use — live booking</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
+</div></div>
+  <div class="outcome-metrics" style="position:relative;z-index:1;"><div class="metric-cell reveal"><div class="metric-num">3×</div><div class="metric-label">Booking conversion increase post-rebrand</div></div><div class="metric-cell reveal"><div class="metric-num">8</div><div class="metric-label">Brand touchpoints unified under one system</div></div><div class="metric-cell reveal"><div class="metric-num">12+</div><div class="metric-label">Hotel partnership materials designed and deployed</div></div></div>
 </section>
 
-<!-- ══ BRAND STANDARDS ══ -->
-<section class="brand-section reveal">
-  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
-  <div class="section-num" style="margin-bottom:32px;">04</div>
-  <div class="bs-block">
-    <div class="bs-block-label">Color Palette</div>
-    <div class="palette-row"><div class="swatch" style="background:#1a1a2e;"><span class="swatch-name">Deep Midnight</span><span class="swatch-hex">#1a1a2e</span></div>
-<div class="swatch" style="background:#4fc3f7;"><span class="swatch-name">Sky Blue</span><span class="swatch-hex">#4fc3f7</span></div>
-<div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div>
+<!-- ══ 04 BRAND STANDARDS ══ -->
+<section class="brand-section reveal" style="position:relative;">
+  <div class="section-watermark">04</div>
+  <div style="position:relative;z-index:1;">
+    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+    <div class="bs-block">
+      <div class="bs-block-label">Color Palette</div>
+      <div class="palette-row"><div class="swatch" style="background:#1a1a2e;"><span class="swatch-name">Deep Navy</span><span class="swatch-hex">#1a1a2e</span></div><div class="swatch" style="background:#4fc3f7;"><span class="swatch-name">Sky Blue</span><span class="swatch-hex">#4fc3f7</span></div><div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Typography</div>
+      <div class="type-row"><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne</div><div class="type-sample-role">Display / Brand</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Instrument Serif',serif;">Aa Bb Cc</div><div class="type-sample-name">Instrument Serif</div><div class="type-sample-role">Body / Tagline</div></div><div class="type-sample"><div class="type-sample-preview" style="font-family:'Syne Mono',serif;">Aa Bb Cc</div><div class="type-sample-name">Syne Mono</div><div class="type-sample-role">Labels / UI</div></div></div>
+    </div>
+    <div class="bs-block">
+      <div class="bs-block-label">Packaging Mockups</div>
+      
+<div class="brand-mockups reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:48px;">
+  <div style="aspect-ratio:4/3;overflow:hidden;"><img src="mock-shootmytravel-polaroid.jpg" alt="" style="width:100%;height:100%;object-fit:cover;"></div>
+  <div style="aspect-ratio:4/3;overflow:hidden;"><div style="width:100%;height:100%;min-height:180px;background:#1a1a2e;border:1.5px dashed #4fc3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:18px;opacity:.35;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 09</div>
+  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">App — UI Detail</div>
+  <div style="margin-top:6px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
 </div>
-  </div>
-  <div class="bs-block">
-    <div class="bs-block-label">Typography</div>
-    <div class="type-row">
-      <div class="type-sample">
-        <div class="type-display">Aa Bb Cc</div>
-        <div class="type-meta">Syne · 800 · Display / Headlines</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display serif">Aa Bb Cc</div>
-        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
-      </div>
-      <div class="type-sample">
-        <div class="type-display mono">Aa Bb Cc</div>
-        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
-      </div>
     </div>
   </div>
 </section>
@@ -477,23 +507,21 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+  <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
 <a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
 <a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
 <a href="SPRB-shootmytravel.html" class="apn-item active"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
 <a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
-</div>
+
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="f-logo">Lucho Escobar</div>
-  <div class="f-copy">© 2026 — Miami, FL</div>
-  <div class="f-loc">lamonda.co</div>
+  <div class="f-copy">© 2025 — Human-first designer, amplified by AI</div>
+  <div class="f-loc">Miami, FL</div>
 </footer>
-
 
 <script>
 // Cursor
@@ -541,7 +569,29 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
   });
 });
 
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
+</html>
 </html>
