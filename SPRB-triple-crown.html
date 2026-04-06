@@ -129,14 +129,10 @@ body.lights-on .switch-label { color:rgba(10,10,16,.45); }
 .gallery-left { aspect-ratio:5/4;overflow:hidden;position:relative; }
 .gallery-left-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .gallery-left:hover .gallery-left-inner { transform:scale(1.03); }
-.gallery-right { display:grid;grid-template-rows:auto auto;gap:3px; }
+.gallery-right { display:grid;grid-template-rows:auto;gap:3px; }
 .gallery-right-top { aspect-ratio:4/3;overflow:hidden;position:relative; }
 .gallery-right-top-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .gallery-right-top:hover .gallery-right-top-inner { transform:scale(1.03); }
-.gallery-right-bot { aspect-ratio:3/1;overflow:hidden;position:relative; }
-.gallery-right-bot-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
-.gallery-right-bot:hover .gallery-right-bot-inner { transform:scale(1.03); }
-
 /* ── OUTCOME ── */
 .outcome-section { padding:96px 52px;border-top:1px solid var(--bone-ghost);background:var(--void-2);position:relative;overflow:hidden; }
 .outcome-section::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,var(--cobalt-glow) 0%,transparent 65%);pointer-events:none; }
@@ -225,7 +221,6 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   .gallery-left { aspect-ratio:16/9; }
   .gallery-right { grid-template-rows:auto auto; }
   .gallery-right-top { aspect-ratio:16/9; }
-  .gallery-right-bot { aspect-ratio:16/5; }
   .apn-grid { grid-template-columns:repeat(4,1fr); }
   .outcome-metrics { grid-template-columns:repeat(3,1fr); }
   .merch-grid { grid-template-columns:repeat(3,1fr); }
@@ -261,6 +256,57 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 .brief-heading strong { color:#BCA048; }
 .outcome-statement strong { color:#BCA048; }
 .f-loc { color:#BCA048; }
+
+/* ── RANSOM LETTER EFFECT — project title hover ── */
+.ransom-word {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  flex-wrap: nowrap;
+  cursor: none;
+}
+.ransom-letter {
+  display: inline-block;
+  position: relative;
+}
+.ransom-letter .ghost {
+  visibility: hidden;
+  display: block;
+  pointer-events: none;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-style: normal;
+  white-space: pre;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+.ransom-letter .char {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  text-align: center;
+  display: block;
+  transform-origin: center bottom;
+  will-change: transform, font-family, color;
+}
+@keyframes ransomChar {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--sans); font-weight: 800; font-style: normal; color: var(--bone); }
+  12%  { transform: translateY(-0.18em) rotate(-5deg) scale(1.18);
+         font-family: var(--serif); font-weight: 400; font-style: italic; color: var(--cobalt-bright); }
+  26%  { transform: translateY(0.14em) rotate(4deg) scale(0.86);
+         font-family: var(--mono); font-style: normal; color: var(--signal); }
+  42%  { transform: translateY(-0.15em) rotate(-3deg) scale(1.15);
+         font-family: var(--script); font-weight: 400; font-style: normal; color: #FF6B35; }
+  58%  { transform: translateY(0.1em) rotate(2deg) scale(0.92);
+         font-family: var(--blackletter); font-weight: 400; color: #F5C842; }
+  74%  { transform: translateY(0.06em) rotate(-1deg) scale(1.04);
+         font-family: var(--sans); font-weight: 800; color: var(--cobalt-bright); }
+  88%  { transform: translateY(-0.02em) rotate(0.3deg) scale(1.01);
+         font-family: var(--sans); font-weight: 800; color: var(--bone); }
+  100% { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--sans); font-weight: 800; font-style: normal; color: var(--bone); }
+}
+
 </style>
 </head>
 <body>
@@ -290,8 +336,8 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   <div class="proj-hero-content">
     <div class="proj-meta-col">
       <div class="proj-eyebrow">Brand Identity / Logo Design / Cannabis</div>
-      <h1 class="proj-title">TRIPLE
-CROWN<em>Brand Identity</em></h1>
+      <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">P</span><span class="char">P</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span></span>
+<span class="ransom-word"><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">W</span><span class="char">W</span></span><span class="ransom-letter"><span class="ghost">N</span><span class="char">N</span></span></span><em>Brand Identity</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
@@ -374,15 +420,7 @@ CROWN<em>Brand Identity</em></h1>
   <div class="gallery-right">
     <div class="gallery-right-top reveal reveal-delay-1">
       <div class="gallery-right-top-inner"><img src="tc-tin-small.png" alt="Triple Crown small tin" class="img-fill" style="width:100%;height:100%;object-fit:cover;"></div>
-    </div>
-    <div class="gallery-right-bot reveal reveal-delay-2">
-      <div class="gallery-right-bot-inner"><div class="img-ph" style="background:#0E2244;border:1.5px dashed #BCA048;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:22px;opacity:0.4;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#BCA048;opacity:.8;">Slot 07</div>
-  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">tc-logo-sketch.jpg</div>
-  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Logo sketches / process work</div>
-  <div style="margin-top:4px;padding:3px 8px;background:#BCA048;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">3:1 · wide</div>
-</div></div>
+    </div></div>
     </div>
   </div>
 </div>
@@ -489,6 +527,28 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Parallax hero grid
 const heroGrid = document.querySelector('.proj-hero-grid');
 if(heroGrid){window.addEventListener('scroll',()=>{const s=window.scrollY;heroGrid.style.transform=`translateY(${s*.3}px)`;},{ passive:true });}
+
+// ── RANSOM LETTER STAGGER — project title ──
+document.querySelectorAll('.ransom-word').forEach(word => {
+  const letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', () => {
+    letters.forEach((l, i) => {
+      const char = l.querySelector('.char');
+      if (!char) return;
+      char.style.animation = 'none';
+      char.offsetHeight;
+      char.style.animation =
+        `ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`;
+    });
+  });
+  word.addEventListener('mouseleave', () => {
+    letters.forEach(l => {
+      const char = l.querySelector('.char');
+      if (char) char.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
