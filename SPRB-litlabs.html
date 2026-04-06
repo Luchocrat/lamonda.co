@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lit Labs — Lucho Escobar</title>
+<meta name="description" content="Lit Labs High Dose — Sub-brand identity, mylar bag system, and custom lettering for a cannabis gummies line by Lucho Escobar.">
+<meta property="og:title" content="Lit Labs — Lucho Escobar">
+<meta property="og:description" content="A sub-brand with enough visual force to own the shelf. Custom bar system. Spot UV + metallic knockout on mylar. Hand-crafted type on Super Sour.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pacifico&family=Syne:wght@400;700;800&family=Syne+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --void: #06060a;
+  --void-2: #0c0c14;
+  --bone: #ede8df;
+  --bone-dim: rgba(237,232,223,0.45);
+  --bone-ghost: rgba(237,232,223,0.07);
+  --cobalt: #2b3fd4;
+  --cobalt-bright: #3f55f5;
+  --cobalt-dim: rgba(43,63,212,0.08);
+  --cobalt-glow: rgba(43,63,212,0.15);
+  --signal: #9dff5b;
+  --serif: 'Instrument Serif', serif;
+  --sans: 'Syne', sans-serif;
+  --mono: 'Syne Mono', monospace;
+  --script: 'Pacifico', cursive;
+  --blackletter: 'UnifrakturMaguntia', cursive;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--bone);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* GRAIN */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* CURSOR */
+#cur {
+  width: 10px; height: 10px;
+  background: var(--cobalt-bright);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%,-50%);
+  mix-blend-mode: screen;
+  transition: width 0.3s, height 0.3s, background 0.3s;
+}
+#cur-ring {
+  width: 36px; height: 36px;
+  border: 1px solid rgba(63,85,245,0.5);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: width 0.4s, height 0.4s, border-color 0.3s;
+}
+body.hovered #cur { background: var(--signal); width: 14px; height: 14px; }
+body.hovered #cur-ring { width: 56px; height: 56px; border-color: rgba(157,255,91,0.4); }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 52px;
+}
+nav::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(6,6,10,0.85), transparent);
+  pointer-events: none; z-index: -1;
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-logo:hover { color: var(--cobalt-bright); }
+.nav-back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  text-decoration: none;
+  transition: color 0.3s, gap 0.3s;
+}
+.nav-back:hover { color: var(--cobalt-bright); gap: 14px; }
+.nav-back span { font-size: 14px; }
+
+/* PROJECT HERO */
+.proj-hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding-top: 120px;
+  position: relative;
+  overflow: hidden;
+}
+.proj-hero-glow {
+  position: absolute;
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(43,63,212,0.2) 0%, transparent 65%);
+  top: -200px; left: -200px;
+  pointer-events: none;
+  will-change: transform;
+}
+.proj-hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(43,63,212,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,63,212,0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  will-change: transform;
+}
+.proj-hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  padding: 0 52px 72px;
+  position: relative; z-index: 2;
+}
+.proj-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: riseIn 0.9s ease 0.2s forwards;
+}
+.proj-eyebrow::before {
+  content: '';
+  display: block; width: 28px; height: 1px;
+  background: var(--signal);
+}
+.proj-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(64px, 10vw, 148px);
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  opacity: 0;
+  animation: riseIn 0.9s ease 0.35s forwards;
+}
+.proj-title em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cobalt-bright);
+  display: block;
+  font-size: 0.75em;
+}
+.proj-info-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 40px;
+  opacity: 0;
+  animation: riseIn 0.9s ease 0.55s forwards;
+}
+.proj-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.spec-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  margin-bottom: 6px;
+}
+.spec-value {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--bone);
+}
+.proj-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  color: var(--bone-dim);
+  line-height: 1.5;
+  padding-top: 28px;
+  border-top: 1px solid var(--bone-ghost);
+}
+
+/* Hero image strip */
+.proj-hero-img {
+  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+.proj-hero-img-inner {
+  width: 100%;
+  height: 130%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  position: absolute;
+  top: -15%;
+}
+.img-label {
+  position: absolute;
+  bottom: 28px; left: 52px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.img-label::before {
+  content: '';
+  display: block; width: 16px; height: 1px;
+  background: var(--cobalt-bright);
+}
+
+/* BRIEF SECTION */
+.brief-section {
+  padding: 120px 52px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  border-top: 1px solid var(--bone-ghost);
+  position: relative;
+  overflow: hidden;
+}
+.brief-label-col {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+.section-marker {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--signal);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-marker::before {
+  content: '';
+  display: block; width: 20px; height: 1px;
+  background: var(--signal);
+}
+.section-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(80px, 10vw, 140px);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(63,85,245,0.2);
+}
+.brief-heading {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.2;
+  color: var(--bone);
+  margin-bottom: 36px;
+}
+.brief-heading strong {
+  font-style: normal;
+  font-family: var(--sans);
+  font-weight: 800;
+  color: var(--cobalt-bright);
+}
+.brief-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height: 1.75;
+  color: var(--bone-dim);
+  max-width: 620px;
+}
+.brief-body p + p { margin-top: 20px; }
+
+/* IMAGE GRID */
+.img-grid { display: grid; gap: 3px; }
+.img-grid.two-col { grid-template-columns: 1fr 1fr; }
+.img-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+.img-block {
+  position: relative;
+  overflow: hidden;
+  background: var(--void-2);
+  will-change: transform;
+}
+.img-block.tall { aspect-ratio: 3/4; }
+.img-block.wide { aspect-ratio: 16/9; }
+.img-block.square { aspect-ratio: 1/1; }
+.img-block.cinema { aspect-ratio: 21/9; }
+.img-block-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.img-block:hover .img-block-inner { transform: scale(1.03); }
+.img-fill { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Full-bleed */
+.full-bleed { width: 100%; position: relative; overflow: hidden; }
+.full-bleed .img-block-inner { min-height: 70vh; }
+
+/* PROCESS SECTION */
+.process-section {
+  padding: 120px 52px;
+  border-top: 1px solid var(--bone-ghost);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+}
+.process-steps { display: flex; flex-direction: column; gap: 0; }
+.process-step {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--bone-ghost);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 28px;
+  align-items: start;
+  transition: padding-left 0.35s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+  overflow: hidden;
+}
+.process-step:first-child { border-top: 1px solid var(--bone-ghost); }
+.process-step::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--cobalt-bright);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.process-step:hover::before { transform: scaleY(1); }
+.process-step:hover { padding-left: 10px; }
+.step-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--cobalt-bright);
+  letter-spacing: 0.1em;
+  padding-top: 3px;
+}
+.step-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--bone);
+  margin-bottom: 10px;
+}
+.step-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--bone-dim);
+  line-height: 1.7;
+}
+
+/* OUTCOME SECTION */
+.outcome-section {
+  padding: 120px 52px;
+  border-top: 1px solid var(--bone-ghost);
+  position: relative;
+  overflow: hidden;
+  background: var(--void-2);
+}
+.outcome-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, var(--cobalt-glow) 0%, transparent 65%);
+  pointer-events: none;
+}
+.outcome-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  margin-bottom: 80px;
+}
+.outcome-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--bone-ghost);
+  margin-bottom: 60px;
+}
+.metric-cell {
+  background: var(--void-2);
+  padding: 40px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.metric-cell:hover { background: var(--cobalt-dim); }
+.metric-cell::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--cobalt-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.metric-cell:hover::after { transform: scaleX(1); }
+.metric-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1;
+  color: var(--cobalt-bright);
+  margin-bottom: 10px;
+}
+.metric-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  line-height: 1.5;
+}
+.outcome-statement {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.8vw, 38px);
+  line-height: 1.3;
+  color: var(--bone);
+  max-width: 800px;
+  position: relative; z-index: 2;
+}
+.outcome-statement strong {
+  font-style: normal;
+  font-family: var(--sans);
+  font-weight: 800;
+  color: var(--cobalt-bright);
+}
+
+/* FINAL GALLERY */
+.final-gallery { border-top: 1px solid var(--bone-ghost); }
+.gallery-header {
+  padding: 80px 52px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 3px;
+}
+.g1 { grid-column: 1 / 8; }
+.g2 { grid-column: 8 / 13; }
+.g3 { grid-column: 1 / 5; }
+.g4 { grid-column: 5 / 9; }
+.g5 { grid-column: 9 / 13; }
+.g6 { grid-column: 1 / 13; }
+
+/* NEXT PROJECT */
+.next-project {
+  display: flex;
+  padding: 80px 52px;
+  border-top: 1px solid var(--bone-ghost);
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: padding-left 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.next-project::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--cobalt-dim);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.next-project::after {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--cobalt-bright);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) 0.05s;
+}
+.next-project:hover::before { transform: scaleX(1); }
+.next-project:hover::after { transform: scaleY(1); }
+.next-project:hover { padding-left: 72px; }
+.next-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 16px;
+  position: relative; z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.next-label::before {
+  content: '';
+  display: block; width: 28px; height: 1px;
+  background: var(--signal);
+  flex-shrink: 0;
+}
+.next-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(40px, 5vw, 72px);
+  color: var(--bone);
+  line-height: 1;
+  position: relative; z-index: 2;
+}
+.next-arrow {
+  font-size: 32px;
+  color: var(--cobalt-bright);
+  position: relative; z-index: 2;
+  transform: rotate(-45deg);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  opacity: 0.6;
+}
+.next-project:hover .next-arrow { transform: rotate(0deg); opacity: 1; }
+
+/* FOOTER */
+footer {
+  padding: 36px 52px;
+  border-top: 1px solid var(--bone-ghost);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.f-logo { font-family: var(--sans); font-weight: 800; font-size: 13px; letter-spacing: 0.06em; }
+.f-copy { font-family: var(--mono); font-size: 10px; color: var(--bone-dim); letter-spacing: 0.1em; }
+.f-loc { font-family: var(--mono); font-size: 10px; color: var(--signal); letter-spacing: 0.15em; text-transform: uppercase; }
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* LIGHT MODE */
+body.lights-on {
+  --void: #F0EEE9;
+  --void-2: #E8E6E0;
+  --bone: #0a0a10;
+  --bone-dim: rgba(10,10,16,0.5);
+  --bone-ghost: rgba(10,10,16,0.08);
+  --cobalt: #2b3fd4;
+  --cobalt-bright: #2233cc;
+  --cobalt-glow: rgba(34,51,204,0.12);
+  --cobalt-dim: rgba(34,51,204,0.06);
+  --signal: #1a6b00;
+}
+body.lights-on nav::after {
+  background: linear-gradient(to bottom, rgba(240,238,233,0.95), transparent);
+}
+body.lights-on .proj-hero-grid {
+  background-image:
+    linear-gradient(rgba(34,51,204,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,51,204,0.05) 1px, transparent 1px);
+}
+body.lights-on .proj-hero-img-inner { background: linear-gradient(135deg, #c8d0f0 0%, #99aaee 40%, #b8c4e8 100%); }
+body.lights-on .outcome-section { background: #E4E2DC; }
+body.lights-on #cur { mix-blend-mode: multiply; background: var(--cobalt-bright); }
+body.lights-on #cur-ring { border-color: rgba(34,51,204,0.4); }
+body.lights-on.hovered #cur { background: var(--signal); }
+body.lights-on.hovered #cur-ring { border-color: rgba(26,107,0,0.4); }
+
+/* Flash overlay */
+.flash-overlay {
+  position: fixed; inset: 0;
+  background: white;
+  z-index: 8999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.08s ease;
+}
+.flash-overlay.flash { opacity: 1; }
+body { transition: background 0.6s cubic-bezier(0.4,0,0.2,1), color 0.6s cubic-bezier(0.4,0,0.2,1); }
+
+/* Light switch */
+.light-switch { position: relative; width: 44px; height: 24px; cursor: none; flex-shrink: 0; }
+.light-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
+.switch-track {
+  position: absolute; inset: 0;
+  background: rgba(237,232,223,0.12);
+  border: 1px solid rgba(237,232,223,0.2);
+  border-radius: 12px;
+  transition: background 0.4s, border-color 0.4s;
+  display: flex; align-items: center; padding: 3px;
+}
+.switch-thumb {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--bone-dim);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.3s;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; line-height: 1;
+}
+input:checked ~ .switch-track { background: rgba(240,230,208,0.9); border-color: rgba(240,230,208,0.6); }
+input:checked ~ .switch-track .switch-thumb { transform: translateX(20px); background: var(--cobalt-bright); }
+.switch-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-dim);
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+body.lights-on .switch-label { color: rgba(10,10,16,0.45); }
+
+/* RANSOM LETTER EFFECT */
+.ransom-word {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0;
+  flex-wrap: nowrap;
+  padding: 24px 12px;
+  margin: -24px -12px;
+  cursor: none;
+}
+.ransom-letter {
+  display: inline-block;
+  position: relative;
+}
+/* Ghost: invisible copy that holds layout space — line-height: inherit so it holds height */
+.ransom-letter .ghost {
+  visibility: hidden;
+  display: block;
+  line-height: inherit;
+  pointer-events: none;
+  font-family: var(--sans);
+  font-weight: 800;
+  font-style: normal;
+  white-space: pre;
+}
+/* Visible char sits on top */
+.ransom-letter .char {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  text-align: center;
+  display: block;
+  transform-origin: center bottom;
+  will-change: transform, font-family;
+}
+.ransom-word.is-italic .ransom-letter .ghost {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+}
+.ransom-word.is-italic .ransom-letter .char {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cobalt-bright);
+}
+
+/* White-only ransom keyframes for case study pages — no color pops */
+@keyframes ransomCharLL {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--sans); font-weight: 800; font-style: normal; }
+  15%  { transform: translateY(-0.18em) rotate(-5deg) scale(1.18);
+         font-family: var(--serif); font-weight: 400; font-style: italic; }
+  30%  { transform: translateY(0.14em) rotate(4deg) scale(0.86);
+         font-family: var(--mono); font-style: normal; }
+  50%  { transform: translateY(-0.12em) rotate(-2deg) scale(1.2);
+         font-family: var(--script); font-weight: 400; font-style: normal; }
+  70%  { transform: translateY(0.06em) rotate(2deg) scale(0.95);
+         font-family: var(--blackletter); font-weight: 400; }
+  85%  { transform: translateY(-0.03em) rotate(-0.5deg) scale(1.04);
+         font-family: var(--sans); font-weight: 800; }
+  100% { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--sans); font-weight: 800; font-style: normal; }
+}
+@keyframes ransomCharItalicLL {
+  0%   { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--serif); font-style: italic; font-weight: 400; }
+  15%  { transform: translateY(-0.2em) rotate(5deg) scale(1.2);
+         font-family: var(--sans); font-weight: 800; font-style: normal; }
+  30%  { transform: translateY(0.12em) rotate(-4deg) scale(0.84);
+         font-family: var(--mono); font-style: normal; }
+  50%  { transform: translateY(-0.14em) rotate(3deg) scale(1.22);
+         font-family: var(--script); font-weight: 400; font-style: normal; }
+  70%  { transform: translateY(0.05em) rotate(-1.5deg) scale(0.96);
+         font-family: var(--blackletter); font-weight: 400; }
+  85%  { transform: translateY(-0.02em) rotate(0.5deg) scale(1.02);
+         font-family: var(--serif); font-style: italic; }
+  100% { transform: translateY(0) rotate(0deg) scale(1);
+         font-family: var(--serif); font-style: italic; font-weight: 400; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .proj-hero-content { grid-template-columns: 1fr; gap: 40px; }
+  .brief-section { grid-template-columns: 1fr; gap: 40px; }
+  .brief-label-col { position: static; }
+  .process-section { grid-template-columns: 1fr; gap: 40px; }
+  .outcome-header { grid-template-columns: 1fr; gap: 40px; }
+  .outcome-metrics { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 24px 28px; }
+  .proj-hero-content { padding: 0 28px 48px; }
+  .brief-section { padding: 80px 28px; }
+  .process-section { padding: 80px 28px; }
+  .outcome-section { padding: 80px 28px; }
+  .gallery-header { padding: 52px 28px 36px; }
+  .next-project { padding: 52px 28px; }
+  footer { padding: 28px; flex-direction: column; gap: 12px; text-align: center; }
+  .outcome-metrics { grid-template-columns: 1fr; }
+  .img-grid.two-col { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .g1, .g2, .g3, .g4, .g5, .g6 { grid-column: 1; }
+  .g2.tall { aspect-ratio: 16/9; }
+}
+@media (max-width: 480px) {
+  .proj-title { font-size: clamp(52px, 14vw, 80px); }
+  .proj-specs { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════
+   ALL PROJECTS NAV
+══════════════════════════ */
+.all-projects-nav { padding: 60px 52px; border-top: 1px solid var(--bone-ghost); }
+.apn-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-dim); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.apn-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--bone-dim); }
+.apn-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; background: var(--bone-ghost); border: 1px solid var(--bone-ghost); border-radius: 2px; overflow: hidden; }
+.apn-item { display: flex; flex-direction: column; gap: 8px; padding: 20px 16px 24px; text-decoration: none; color: var(--bone); background: var(--void); transition: background 0.25s; }
+.apn-item:hover  { background: var(--void-2); }
+.apn-item.active { background: var(--cobalt-dim); }
+.apn-num { font-family: var(--mono); font-size: 8px; letter-spacing: 0.2em; color: var(--signal); display: block; }
+.apn-item.active .apn-num::before { content: '✦ '; }
+.apn-name { font-family: var(--serif); font-style: italic; font-size: clamp(12px,1.1vw,15px); line-height: 1.25; color: var(--bone); display: block; position: relative; }
+.apn-cat  { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-dim); display: block; }
+@keyframes glitchName {
+  0%,100% { transform: translate(0);       text-shadow: none; }
+  15%      { transform: translate(-3px,0);  text-shadow:  3px 0 rgba(255,0,64,.7),-3px 0 rgba(0,255,238,.7); }
+  30%      { transform: translate( 3px,0);  text-shadow: -3px 0 rgba(255,0,64,.7), 3px 0 rgba(0,255,238,.7); }
+  50%      { transform: translate(-1px,0);  text-shadow:  2px 0 rgba(255,0,64,.4); }
+  70%      { transform: translate( 1px,0);  text-shadow: none; }
+}
+.apn-item:not(.active):hover .apn-name { animation: glitchName 0.36s cubic-bezier(0.4,0,0.2,1) forwards; }
+@media (max-width: 1024px) { .all-projects-nav { padding: 52px 36px; } .apn-grid { grid-template-columns: repeat(4,1fr); } }
+@media (max-width: 768px)  { .all-projects-nav { padding: 48px 20px; } .apn-grid { grid-template-columns: repeat(2,1fr); } .apn-item { padding: 16px 14px 18px; } }
+@media (max-width: 480px)  { .apn-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div class="flash-overlay" id="flashOverlay"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Lucho Escobar</a>
+  <a href="index.html#work" class="nav-back"><span>&#8592;</span> All Work</a>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span class="switch-label" id="switchLabel">Dark</span>
+    <label class="light-switch" title="Turn the lights on">
+      <input type="checkbox" id="lightToggle">
+      <div class="switch-track">
+        <div class="switch-thumb">&#128161;</div>
+      </div>
+    </label>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<section class="proj-hero">
+  <div class="proj-hero-glow" data-parallax="0.12"></div>
+  <div class="proj-hero-grid" data-parallax="0.06"></div>
+
+  <div class="proj-hero-content">
+    <div class="proj-meta-col">
+      <p class="proj-eyebrow">Sub-Brand Identity / Mylar Packaging / Cannabis</p>
+      <h1 class="proj-title" style="line-height:0.86;">
+        <span class="ransom-word" id="ransomLine1">
+          <span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span>
+        </span><br>
+        <span class="ransom-word" id="ransomLine2">
+          <span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">B</span><span class="char">B</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span>
+        </span><br>
+        <em style="display:block;margin-top:-0.04em;">
+          <span class="ransom-word is-italic" id="ransomSubtitle">
+            <span class="ransom-letter"><span class="ghost">H</span><span class="char">H</span></span><span class="ransom-letter"><span class="ghost">i</span><span class="char">i</span></span><span class="ransom-letter"><span class="ghost">g</span><span class="char">g</span></span><span class="ransom-letter"><span class="ghost">h</span><span class="char">h</span></span><span style="display:inline-block;width:0.28em;"> </span><span class="ransom-letter"><span class="ghost">D</span><span class="char">D</span></span><span class="ransom-letter"><span class="ghost">o</span><span class="char">o</span></span><span class="ransom-letter"><span class="ghost">s</span><span class="char">s</span></span><span class="ransom-letter"><span class="ghost">e</span><span class="char">e</span></span><span style="display:inline-block;width:0.28em;"> </span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">i</span><span class="char">i</span></span><span class="ransom-letter"><span class="ghost">n</span><span class="char">n</span></span><span class="ransom-letter"><span class="ghost">e</span><span class="char">e</span></span>
+          </span>
+        </em>
+      </h1>
+    </div>
+
+    <div class="proj-info-col">
+      <div class="proj-specs">
+        <div class="spec">
+          <div class="spec-label">Client</div>
+          <div class="spec-value">Lit Labs</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Year</div>
+          <div class="spec-value">2024</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Scope</div>
+          <div class="spec-value">Sub-Brand Identity / Mylar Bag System</div>
+        </div>
+        <div class="spec">
+          <div class="spec-label">Industry</div>
+          <div class="spec-value">Cannabis / CPG</div>
+        </div>
+      </div>
+      <p class="proj-tagline">A sub-brand with enough visual force to own the shelf. Built from a custom graphic system, premium finishes, and hand-crafted type.</p>
+    </div>
+  </div>
+
+  <!-- Hero image strip -->
+  <div class="proj-hero-img">
+    <div class="proj-hero-img-inner" data-parallax-inner="0.2" style="background:#08080e;">
+      <img src="ll-lowdose.jpg" alt="Lit Labs Low Dose Tropical Medley mylar bag" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;filter:brightness(0.88);">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,8,14,0.2) 0%,rgba(8,8,14,0.0) 50%,rgba(8,8,14,0.65) 100%);pointer-events:none;"></div>
+    </div>
+    <div class="img-label">Lit Labs High Dose / Mylar Bag System</div>
+  </div>
+</section>
+
+<!-- BRIEF -->
+<section class="brief-section">
+  <div class="brief-label-col reveal">
+    <div class="section-marker">The Brief</div>
+    <div class="section-num">01</div>
+  </div>
+  <div class="brief-content-col">
+    <h2 class="brief-heading reveal">
+      A sub-brand needs its own <strong>visual authority.</strong>
+    </h2>
+    <div class="brief-body reveal reveal-delay-1">
+      <p>Lit Labs needed a line identity for their High Dose gummies that pushed harder than the parent brand. Not a variation. A sub-brand with enough visual force to own the shelf independently while remaining unmistakably Lit Labs.</p>
+      <p>The delivery format was mylar bags — the format that separates intentional packaging from everything else. The system had to work across Low Dose, Heavy Dose, Super Sour, Live Resin, and Liquid Diamonds. Five distinct lines, one coherent language.</p>
+    </div>
+
+    <!-- Brief image grid -->
+    <div class="img-grid two-col reveal reveal-delay-2" style="margin-top:52px;">
+      <div class="img-block wide" style="background:#0a0a10;">
+        <div class="img-block-inner" style="padding:0;background:none;">
+          <img src="ll-lowdose.jpg" alt="Lit Labs Low Dose Tropical Medley" class="img-fill" style="object-position:center 20%;">
+        </div>
+      </div>
+      <div class="img-block wide" style="background:#0a0a10;">
+        <div class="img-block-inner" style="padding:0;background:none;">
+          <img src="ll-heavydose-clementine.jpg" alt="Lit Labs Heavy Dose Clementine Crush" class="img-fill" style="object-position:center top;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="brief-label-col reveal">
+    <div class="section-marker">Process</div>
+    <div class="section-num">02</div>
+  </div>
+
+  <div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <div class="step-title">The Bar System</div>
+          <div class="step-desc">A custom graphic element built specifically for this line — not borrowed from the parent brand. The bar system became the structural architecture of every SKU: readable at shelf distance before the name registers.</div>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <div class="step-title">Premium Finish Combination</div>
+          <div class="step-desc">Spot UV and metallic knockout applied to mylar. The combination creates depth photography cannot fully capture. You understand it when you hold it. Every SKU treated as a premium object, not just a package.</div>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <div class="step-title">Super Sour — Hand Lettering</div>
+          <div class="step-desc">Super Sour became the platform for custom script lettering as the line identity. Hand-crafted type with metallic knockout on mylar. The craft is the statement. Nothing on the shelf reads the same way.</div>
+        </div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <span class="step-num">04</span>
+        <div class="step-content">
+          <div class="step-title">System Across Five Lines</div>
+          <div class="step-desc">Low Dose, Heavy Dose, Super Sour, Live Resin, Liquid Diamonds. Five product lines, each with its own personality, all speaking the same Lit Labs visual language. A family, not a collection.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process feature images -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px;">
+      <div class="img-block square reveal" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
+        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
+          <div style="font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">ll-bar-system.jpg</div>
+        </div>
+      </div>
+      <div class="img-block square reveal reveal-delay-1" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
+        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
+          <div style="font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">ll-mylar-finish.jpg</div>
+        </div>
+      </div>
+      <div class="img-block square reveal reveal-delay-2" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
+        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
+          <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
+          <div style="font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">ll-supersour-lettering.jpg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULL BLEED -->
+<div class="full-bleed reveal">
+  <div class="img-block cinema" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
+    <div class="img-block-inner" style="flex-direction:column;gap:8px;">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">21:9 Widescreen</div>
+      <div style="font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">ll-product-spread.jpg</div>
+    </div>
+  </div>
+</div>
+
+<!-- OUTCOME -->
+<section class="outcome-section">
+  <div class="outcome-header reveal">
+    <div>
+      <div class="section-marker">Outcome</div>
+      <div class="section-num">03</div>
+    </div>
+    <p class="outcome-statement">Five lines. One language. The High Dose system positioned Lit Labs above the standard of the category. <strong>The craft you feel before you open it.</strong></p>
+  </div>
+
+  <div class="outcome-metrics reveal reveal-delay-1">
+    <div class="metric-cell">
+      <div class="metric-num">5</div>
+      <div class="metric-label">Product lines in the system</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">2</div>
+      <div class="metric-label">Premium finishes on every SKU</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">1</div>
+      <div class="metric-label">Custom lettering sub-brand launched</div>
+    </div>
+  </div>
+
+  <a href="Lucho_Resume_2026_.pdf" download style="display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;margin-top:48px;position:relative;z-index:2;border-bottom:1px solid rgba(237,232,223,0.15);padding-bottom:4px;transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cobalt-bright)';this.style.borderColor='var(--cobalt-bright)'" onmouseout="this.style.color='var(--bone-dim)';this.style.borderColor='rgba(237,232,223,0.15)'">
+    Looking to hire? &nbsp;&#8595; Download CV
+  </a>
+</section>
+
+<!-- FINAL GALLERY -->
+<section class="final-gallery">
+  <div class="gallery-header reveal">
+    <div>
+      <div class="section-marker">Gallery</div>
+      <h3 style="font-family:var(--sans);font-weight:800;font-size:clamp(36px,4vw,56px);letter-spacing:-0.03em;line-height:0.9;">Final <em style="font-family:var(--serif);font-weight:400;font-style:italic;color:var(--cobalt-bright);">Work</em></h3>
+    </div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--bone-dim);letter-spacing:0.12em;">06 Images</div>
+  </div>
+
+  <div class="gallery-grid">
+    <!-- g1: Low Dose hero shot -->
+    <div class="img-block g1" style="aspect-ratio:unset;min-height:380px;background:#0a0a10;">
+      <div class="img-block-inner" style="padding:0;background:none;">
+        <img src="ll-lowdose.jpg" alt="Lit Labs Low Dose Tropical Medley" class="img-fill" style="object-position:center 20%;filter:brightness(0.92);">
+      </div>
+    </div>
+    <!-- g2: Heavy Dose -->
+    <div class="img-block tall g2" style="background:#0a0a10;">
+      <div class="img-block-inner" style="padding:0;background:none;">
+        <img src="ll-heavydose-clementine.jpg" alt="Lit Labs Heavy Dose Clementine Crush" class="img-fill" style="object-position:center top;">
+      </div>
+    </div>
+    <!-- g3: Super Sour -->
+    <div class="img-block square g3" style="background:#0a0a10;">
+      <div class="img-block-inner" style="padding:0;background:none;">
+        <img src="ll-supersour.jpg" alt="Lit Labs Super Sour custom lettering" class="img-fill" style="object-position:center top;">
+      </div>
+    </div>
+    <!-- g4: Live Resin -->
+    <div class="img-block square g4" style="background:#0a0a10;">
+      <div class="img-block-inner" style="padding:0;background:none;">
+        <img src="ll-liveresin.jpg" alt="Lit Labs Live Resin" class="img-fill" style="object-position:center 30%;">
+      </div>
+    </div>
+    <!-- g5: real image — transparent PNG on pure void -->
+    <div class="img-block square g5" style="background:var(--void);">
+      <div class="img-block-inner">
+        <img src="ll-heavydosefresa.png" alt="Lit Labs Heavy Dose Fresa" class="img-fill" style="object-fit:contain;padding:12px;">
+      </div>
+    </div>
+    <!-- g6: full-width placeholder -->
+    <div class="img-block g6" style="aspect-ratio:unset;min-height:260px;border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
+      <div class="img-block-inner" style="flex-direction:column;gap:8px;">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">Full Width</div>
+        <div style="font-family:var(--mono);font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">ll-five-line-lineup.jpg</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ALL PROJECTS ══ -->
+<div class="all-projects-nav">
+  <div class="apn-label">All Projects</div>
+  <div class="apn-grid">
+    <a href="SPRB-triple-crown.html" class="apn-item">
+      <span class="apn-num">01</span>
+      <span class="apn-name">Triple Crown</span>
+      <span class="apn-cat">Brand Identity</span>
+    </a>
+    <a href="SPRB-mbaf.html" class="apn-item">
+      <span class="apn-num">02</span>
+      <span class="apn-name">Made by a Farmer</span>
+      <span class="apn-cat">Agriculture</span>
+    </a>
+    <a href="SPRB-litlabs.html" class="apn-item active">
+      <span class="apn-num">03</span>
+      <span class="apn-name">Lit Labs</span>
+      <span class="apn-cat">Beverage</span>
+    </a>
+    <a href="SPRB-properroots.html" class="apn-item">
+      <span class="apn-num">04</span>
+      <span class="apn-name">Proper Roots</span>
+      <span class="apn-cat">Food &amp; Bev</span>
+    </a>
+    <a href="SPRB-socialyaks.html" class="apn-item">
+      <span class="apn-num">05</span>
+      <span class="apn-name">Social Yaks</span>
+      <span class="apn-cat">Card Game</span>
+    </a>
+    <a href="SPRB-shootmytravel.html" class="apn-item">
+      <span class="apn-num">06</span>
+      <span class="apn-name">Shoot My Travel</span>
+      <span class="apn-cat">Growth Web</span>
+    </a>
+    <a href="SPRB-keybiscayne.html" class="apn-item">
+      <span class="apn-num">07</span>
+      <span class="apn-name">Key Biscayne</span>
+      <span class="apn-cat">Lettering</span>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">LUCHO ESCOBAR</div>
+  <div class="f-copy">&#169; 2026 Unapologetic Artsonist</div>
+  <div class="f-loc">Miami, FL</div>
+</footer>
+
+<script>
+// CURSOR
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top = my + 'px';
+});
+(function animRing() {
+  rx += (mx - rx) * 0.1;
+  ry += (my - ry) * 0.1;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+})();
+document.querySelectorAll('a, .process-step, .metric-cell, .img-block').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
+});
+
+// PARALLAX
+const parallaxEls = document.querySelectorAll('[data-parallax]');
+const heroImgInner = document.querySelector('[data-parallax-inner]');
+function onScroll() {
+  parallaxEls.forEach(el => {
+    const speed = parseFloat(el.dataset.parallax);
+    const rect = el.getBoundingClientRect();
+    const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * speed;
+    el.style.transform = `translateY(${offset}px)`;
+  });
+  if (heroImgInner) heroImgInner.style.transform = `translateY(${window.scrollY * 0.18}px)`;
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+// REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// LIGHT SWITCH
+const toggle = document.getElementById('lightToggle');
+const flash  = document.getElementById('flashOverlay');
+const lbl    = document.getElementById('switchLabel');
+toggle.addEventListener('change', () => {
+  flash.classList.add('flash');
+  setTimeout(() => {
+    document.body.classList.toggle('lights-on', toggle.checked);
+    lbl.textContent = toggle.checked ? 'Light' : 'Dark';
+    flash.classList.remove('flash');
+  }, 80);
+});
+
+// RANSOM STAGGER — white-only LL keyframes
+document.querySelectorAll('.ransom-word').forEach(word => {
+  const letters = word.querySelectorAll('.ransom-letter');
+  const isItalic = word.classList.contains('is-italic');
+  word.addEventListener('mouseenter', () => {
+    letters.forEach((l, i) => {
+      const char = l.querySelector('.char');
+      if (!char) return;
+      char.style.animation = 'none';
+      char.offsetHeight;
+      char.style.animation = isItalic
+        ? `ransomCharItalicLL 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`
+        : `ransomCharLL 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`;
+    });
+  });
+  word.addEventListener('mouseleave', () => {
+    letters.forEach(l => {
+      const char = l.querySelector('.char');
+      if (char) char.style.animation = 'none';
+    });
+  });
+});
+</script>
+</body>
+</html>
