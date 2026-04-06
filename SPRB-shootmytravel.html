@@ -4,859 +4,503 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shoot My Travel — Lucho Escobar</title>
-<meta name="description" content="Shoot My Travel — Website design and UI/UX for a platform connecting travelers with local photographers by Lucho Escobar.">
+<meta name="description" content="Shoot My Travel — Growth web design and UX research by Lucho Escobar.">
 <meta property="og:title" content="Shoot My Travel — Lucho Escobar">
-<meta property="og:description" content="The UI had to feel as good as the destinations it sold. Restraint with intention. Trust and aspiration, built into every interaction.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pacifico&family=Syne:wght@400;700;800&family=Syne+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --void: #06060a; --void-2: #0c0c14; --bone: #ede8df;
-  --bone-dim: rgba(237,232,223,0.45); --bone-ghost: rgba(237,232,223,0.07);
-  --cobalt: #2b3fd4; --cobalt-bright: #3f55f5; --cobalt-dim: rgba(43,63,212,0.08);
-  --cobalt-glow: rgba(43,63,212,0.15); --signal: #9dff5b;
+  --void: #06060a; --void-2: #0c0c14;
+  --bone: #ede8df; --bone-dim: rgba(237,232,223,0.45);
+  --bone-ghost: rgba(237,232,223,0.07);
+  --cobalt: #2b3fd4; --cobalt-bright: #3f55f5;
+  --cobalt-dim: rgba(43,63,212,0.08); --cobalt-glow: rgba(43,63,212,0.15);
+  --signal: #9dff5b;
   --serif: 'Instrument Serif', serif; --sans: 'Syne', sans-serif;
   --mono: 'Syne Mono', monospace; --script: 'Pacifico', cursive;
   --blackletter: 'UnifrakturMaguntia', cursive;
+  /* project accent overrides via inline style on body */
+  --accent: var(--cobalt-bright);
 }
 html { scroll-behavior: smooth; }
-body { background: var(--void); color: var(--bone); font-family: var(--sans); overflow-x: hidden; cursor: none; }
-body::after { content: ''; position: fixed; inset: 0; z-index: 9000; pointer-events: none; opacity: 0.028; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px; }
-#cur { width: 10px; height: 10px; background: var(--cobalt-bright); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: screen; transition: width 0.3s, height 0.3s, background 0.3s; }
-#cur-ring { width: 36px; height: 36px; border: 1px solid rgba(63,85,245,0.5); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width 0.4s, height 0.4s, border-color 0.3s; }
-body.hovered #cur { background: var(--signal); width: 14px; height: 14px; }
-body.hovered #cur-ring { width: 56px; height: 56px; border-color: rgba(157,255,91,0.4); }
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 32px 52px; }
-nav::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(6,6,10,0.85), transparent); pointer-events: none; z-index: -1; }
-.nav-logo { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-dim); text-decoration: none; transition: color 0.3s; }
-.nav-logo:hover { color: var(--cobalt-bright); }
-.nav-back { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-dim); text-decoration: none; transition: color 0.3s, gap 0.3s; }
-.nav-back:hover { color: var(--cobalt-bright); gap: 14px; }
-.nav-back span { font-size: 14px; }
-.proj-hero { min-height: 100vh; display: grid; grid-template-rows: 1fr auto; padding-top: 120px; position: relative; overflow: hidden; }
-.proj-hero-glow { position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(43,63,212,0.2) 0%, transparent 65%); top: -200px; left: -200px; pointer-events: none; will-change: transform; }
-.proj-hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(43,63,212,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,63,212,0.05) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; will-change: transform; }
-.proj-hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; padding: 0 52px 72px; position: relative; z-index: 2; }
-.proj-eyebrow { display: flex; align-items: center; gap: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--signal); margin-bottom: 28px; opacity: 0; animation: riseIn 0.9s ease 0.2s forwards; }
-.proj-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--signal); }
-.proj-title { font-family: var(--sans); font-weight: 800; font-size: clamp(48px, 8vw, 120px); line-height: 0.86; letter-spacing: -0.04em; opacity: 0; animation: riseIn 0.9s ease 0.35s forwards; }
-.proj-title em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--cobalt-bright); display: block; font-size: 0.75em; }
-.proj-info-col { display: flex; flex-direction: column; justify-content: flex-end; gap: 40px; opacity: 0; animation: riseIn 0.9s ease 0.55s forwards; }
-.proj-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.spec-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-dim); margin-bottom: 6px; }
-.spec-value { font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--bone); }
-.proj-tagline { font-family: var(--serif); font-style: italic; font-size: clamp(18px, 2vw, 24px); color: var(--bone-dim); line-height: 1.5; padding-top: 28px; border-top: 1px solid var(--bone-ghost); }
-.proj-hero-img { width: 100%; height: 60vh; min-height: 400px; position: relative; overflow: hidden; will-change: transform; }
-.proj-hero-img-inner { width: 100%; height: 130%; display: flex; align-items: center; justify-content: center; will-change: transform; position: absolute; top: -15%; }
-.img-label { position: absolute; bottom: 28px; left: 52px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-dim); display: flex; align-items: center; gap: 10px; }
-.img-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--cobalt-bright); }
-.brief-section { padding: 120px 52px; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; border-top: 1px solid var(--bone-ghost); position: relative; overflow: hidden; }
-.brief-label-col { position: sticky; top: 120px; align-self: start; }
-.section-marker { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--signal); display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-.section-marker::before { content: ''; display: block; width: 20px; height: 1px; background: var(--signal); }
-.section-num { font-family: var(--sans); font-weight: 800; font-size: clamp(80px, 10vw, 140px); line-height: 0.88; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px rgba(63,85,245,0.2); }
-.brief-heading { font-family: var(--serif); font-style: italic; font-size: clamp(28px, 3.5vw, 46px); line-height: 1.2; color: var(--bone); margin-bottom: 36px; }
-.brief-heading strong { font-style: normal; font-family: var(--sans); font-weight: 800; color: var(--cobalt-bright); }
-.brief-body { font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.6vw, 20px); line-height: 1.75; color: var(--bone-dim); max-width: 620px; }
-.brief-body p + p { margin-top: 20px; }
-.img-grid { display: grid; gap: 3px; }
-.img-grid.two-col { grid-template-columns: 1fr 1fr; }
-.img-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
-.img-block { position: relative; overflow: hidden; background: var(--void-2); will-change: transform; }
-.img-block.tall { aspect-ratio: 3/4; }
-.img-block.wide { aspect-ratio: 16/9; }
-.img-block.square { aspect-ratio: 1/1; }
-.img-block.cinema { aspect-ratio: 21/9; }
-.img-block-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.6s cubic-bezier(0.4,0,0.2,1); }
-.img-block:hover .img-block-inner { transform: scale(1.03); }
-.img-fill { width: 100%; height: 100%; object-fit: cover; display: block; }
-.full-bleed { width: 100%; position: relative; overflow: hidden; }
-.full-bleed .img-block-inner { min-height: 70vh; }
-.process-section { padding: 120px 52px; border-top: 1px solid var(--bone-ghost); display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
-.process-steps { display: flex; flex-direction: column; gap: 0; }
-.process-step { padding: 40px 0; border-bottom: 1px solid var(--bone-ghost); display: grid; grid-template-columns: 48px 1fr; gap: 28px; align-items: start; transition: padding-left 0.35s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden; }
-.process-step:first-child { border-top: 1px solid var(--bone-ghost); }
-.process-step::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--cobalt-bright); transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-.process-step:hover::before { transform: scaleY(1); }
-.process-step:hover { padding-left: 10px; }
-.step-num { font-family: var(--mono); font-size: 11px; color: var(--cobalt-bright); letter-spacing: 0.1em; padding-top: 3px; }
-.step-title { font-family: var(--sans); font-weight: 700; font-size: 17px; color: var(--bone); margin-bottom: 10px; }
-.step-desc { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--bone-dim); line-height: 1.7; }
-.outcome-section { padding: 120px 52px; border-top: 1px solid var(--bone-ghost); position: relative; overflow: hidden; background: var(--void-2); }
-.outcome-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, var(--cobalt-glow) 0%, transparent 65%); pointer-events: none; }
-.outcome-header { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; margin-bottom: 80px; }
-.outcome-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--bone-ghost); margin-bottom: 60px; }
-.metric-cell { background: var(--void-2); padding: 40px 32px; position: relative; overflow: hidden; transition: background 0.4s; }
-.metric-cell:hover { background: var(--cobalt-dim); }
-.metric-cell::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--cobalt-bright); transform: scaleX(0); transform-origin: left; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-.metric-cell:hover::after { transform: scaleX(1); }
-.metric-num { font-family: var(--sans); font-weight: 800; font-size: clamp(40px, 5vw, 64px); line-height: 1; color: var(--cobalt-bright); margin-bottom: 10px; }
-.metric-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-dim); line-height: 1.5; }
-.outcome-statement { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2.8vw, 38px); line-height: 1.3; color: var(--bone); max-width: 800px; position: relative; z-index: 2; }
-.outcome-statement strong { font-style: normal; font-family: var(--sans); font-weight: 800; color: var(--cobalt-bright); }
-.final-gallery { border-top: 1px solid var(--bone-ghost); }
-.gallery-header { padding: 80px 52px 52px; display: flex; justify-content: space-between; align-items: baseline; }
-.gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px; }
-.g1 { grid-column: 1 / 8; } .g2 { grid-column: 8 / 13; } .g3 { grid-column: 1 / 5; }
-.g4 { grid-column: 5 / 9; } .g5 { grid-column: 9 / 13; } .g6 { grid-column: 1 / 13; }
-.next-project { display: flex; padding: 80px 52px; border-top: 1px solid var(--bone-ghost); text-decoration: none; justify-content: space-between; align-items: center; position: relative; overflow: hidden; transition: padding-left 0.4s cubic-bezier(0.4,0,0.2,1); }
-.next-project::before { content: ''; position: absolute; inset: 0; background: var(--cobalt-dim); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
-.next-project::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--cobalt-bright); transform: scaleY(0); transform-origin: bottom; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) 0.05s; }
-.next-project:hover::before { transform: scaleX(1); }
-.next-project:hover::after { transform: scaleY(1); }
-.next-project:hover { padding-left: 72px; }
-.next-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--signal); margin-bottom: 16px; position: relative; z-index: 2; display: flex; align-items: center; gap: 14px; }
-.next-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--signal); flex-shrink: 0; }
-.next-name { font-family: var(--serif); font-style: italic; font-size: clamp(40px, 5vw, 72px); color: var(--bone); line-height: 1; position: relative; z-index: 2; }
-.next-arrow { font-size: 32px; color: var(--cobalt-bright); position: relative; z-index: 2; transform: rotate(-45deg); transition: transform 0.4s cubic-bezier(0.4,0,0.2,1); opacity: 0.6; }
-.next-project:hover .next-arrow { transform: rotate(0deg); opacity: 1; }
-footer { padding: 36px 52px; border-top: 1px solid var(--bone-ghost); display: flex; justify-content: space-between; align-items: center; }
-.f-logo { font-family: var(--sans); font-weight: 800; font-size: 13px; letter-spacing: 0.06em; }
-.f-copy { font-family: var(--mono); font-size: 10px; color: var(--bone-dim); letter-spacing: 0.1em; }
-.f-loc { font-family: var(--mono); font-size: 10px; color: var(--signal); letter-spacing: 0.15em; text-transform: uppercase; }
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
-@keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-body.lights-on { --void: #F0EEE9; --void-2: #E8E6E0; --bone: #0a0a10; --bone-dim: rgba(10,10,16,0.5); --bone-ghost: rgba(10,10,16,0.08); --cobalt-bright: #2233cc; --cobalt-glow: rgba(34,51,204,0.12); --cobalt-dim: rgba(34,51,204,0.06); --signal: #1a6b00; }
-body.lights-on nav::after { background: linear-gradient(to bottom, rgba(240,238,233,0.95), transparent); }
-body.lights-on .outcome-section { background: #E4E2DC; }
-body.lights-on #cur { mix-blend-mode: multiply; background: var(--cobalt-bright); }
-body.lights-on #cur-ring { border-color: rgba(34,51,204,0.4); }
-body.lights-on.hovered #cur { background: var(--signal); }
-body.lights-on.hovered #cur-ring { border-color: rgba(26,107,0,0.4); }
-.flash-overlay { position: fixed; inset: 0; background: white; z-index: 8999; pointer-events: none; opacity: 0; transition: opacity 0.08s ease; }
-.flash-overlay.flash { opacity: 1; }
-body { transition: background 0.6s cubic-bezier(0.4,0,0.2,1), color 0.6s cubic-bezier(0.4,0,0.2,1); }
-.light-switch { position: relative; width: 44px; height: 24px; cursor: none; flex-shrink: 0; }
-.light-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
-.switch-track { position: absolute; inset: 0; background: rgba(237,232,223,0.12); border: 1px solid rgba(237,232,223,0.2); border-radius: 12px; transition: background 0.4s, border-color 0.4s; display: flex; align-items: center; padding: 3px; }
-.switch-thumb { width: 16px; height: 16px; border-radius: 50%; background: var(--bone-dim); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), background 0.3s; display: flex; align-items: center; justify-content: center; font-size: 9px; line-height: 1; }
-input:checked ~ .switch-track { background: rgba(240,230,208,0.9); border-color: rgba(240,230,208,0.6); }
-input:checked ~ .switch-track .switch-thumb { transform: translateX(20px); background: var(--cobalt-bright); }
-.switch-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-dim); transition: color 0.3s; white-space: nowrap; }
-body.lights-on .switch-label { color: rgba(10,10,16,0.45); }
-.ransom-word { display: inline-flex; align-items: baseline; gap: 0; flex-wrap: nowrap; padding: 24px 12px; margin: -24px -12px; cursor: none; }
-.ransom-letter { display: inline-block; position: relative; }
-.ransom-letter .ghost { visibility: hidden; display: block; line-height: inherit; pointer-events: none; font-family: var(--sans); font-weight: 800; font-style: normal; white-space: pre; }
-.ransom-letter .char { position: absolute; top: 0; left: 0; right: 0; text-align: center; display: block; transform-origin: center bottom; will-change: transform, font-family; }
-.ransom-word.is-italic .ransom-letter .ghost { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.ransom-word.is-italic .ransom-letter .char { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--cobalt-bright); }
-@keyframes ransomCharSMT {
-  0%   { transform: translateY(0) rotate(0deg) scale(1); font-family: var(--sans); font-weight: 800; font-style: normal; }
-  15%  { transform: translateY(-0.18em) rotate(-5deg) scale(1.18); font-family: var(--serif); font-weight: 400; font-style: italic; }
-  30%  { transform: translateY(0.14em) rotate(4deg) scale(0.86); font-family: var(--mono); font-style: normal; }
-  50%  { transform: translateY(-0.12em) rotate(-2deg) scale(1.2); font-family: var(--script); font-weight: 400; font-style: normal; }
-  70%  { transform: translateY(0.06em) rotate(2deg) scale(0.95); font-family: var(--blackletter); font-weight: 400; }
-  85%  { transform: translateY(-0.03em) rotate(-0.5deg) scale(1.04); font-family: var(--sans); font-weight: 800; }
-  100% { transform: translateY(0) rotate(0deg) scale(1); font-family: var(--sans); font-weight: 800; font-style: normal; }
+body { background:var(--void); color:var(--bone); font-family:var(--sans); overflow-x:hidden; cursor:none; }
+
+/* GRAIN */
+body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:none; opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px; }
+
+/* CURSOR */
+#cur { width:10px;height:10px;background:var(--cobalt-bright);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .3s,height .3s,background .3s; }
+#cur-ring { width:36px;height:36px;border:1px solid rgba(63,85,245,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s,height .4s,border-color .3s; }
+body.hovered #cur { background:var(--signal);width:14px;height:14px; }
+body.hovered #cur-ring { width:56px;height:56px;border-color:rgba(157,255,91,0.4); }
+
+/* NAV */
+nav { position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:32px 52px; }
+nav::after { content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,6,10,.85),transparent);pointer-events:none;z-index:-1; }
+.nav-logo { font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;transition:color .3s; }
+.nav-logo:hover { color:var(--cobalt-bright); }
+.nav-back { display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;transition:color .3s,gap .3s; }
+.nav-back:hover { color:var(--cobalt-bright);gap:14px; }
+.nav-back span { font-size:14px; }
+.nav-right { display:flex;align-items:center;gap:20px; }
+
+/* ── LIGHT SWITCH ── */
+.light-switch { position:relative;width:44px;height:24px;cursor:none;flex-shrink:0; }
+.light-switch input { opacity:0;width:0;height:0;position:absolute; }
+.switch-track { position:absolute;inset:0;background:rgba(237,232,223,.12);border:1px solid rgba(237,232,223,.2);border-radius:12px;transition:background .4s,border-color .4s;display:flex;align-items:center;padding:3px; }
+.switch-thumb { width:16px;height:16px;border-radius:50%;background:var(--bone-dim);transition:transform .35s cubic-bezier(.4,0,.2,1),background .3s; }
+input:checked ~ .switch-track { background:rgba(240,230,208,.9);border-color:rgba(240,230,208,.6); }
+input:checked ~ .switch-track .switch-thumb { transform:translateX(20px);background:var(--cobalt-bright); }
+.switch-label { font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);transition:color .3s;white-space:nowrap; }
+
+/* FLASH */
+.flash-overlay { position:fixed;inset:0;background:white;z-index:8999;pointer-events:none;opacity:0;transition:opacity .08s ease; }
+.flash-overlay.flash { opacity:1; }
+body { transition:background .6s cubic-bezier(.4,0,.2,1),color .6s cubic-bezier(.4,0,.2,1); }
+body.lights-on { --void:#F0EEE9;--void-2:#E8E6E0;--bone:#0a0a10;--bone-dim:rgba(10,10,16,.5);--bone-ghost:rgba(10,10,16,.08);--cobalt:#2b3fd4;--cobalt-bright:#2233cc;--cobalt-glow:rgba(34,51,204,.12);--cobalt-dim:rgba(34,51,204,.06);--signal:#1a6b00; }
+body.lights-on nav::after { background:linear-gradient(to bottom,rgba(240,238,233,.95),transparent); }
+body.lights-on .switch-label { color:rgba(10,10,16,.45); }
+
+/* ── HERO ── */
+.proj-hero { padding-top:120px;position:relative;overflow:hidden; }
+.proj-hero-bg { position:absolute;inset:0;pointer-events:none; }
+.proj-hero-glow { position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(43,63,212,.18) 0%,transparent 65%);top:-180px;left:-180px; }
+.proj-hero-grid { position:absolute;inset:0;background-image:linear-gradient(rgba(43,63,212,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(43,63,212,.05) 1px,transparent 1px);background-size:80px 80px; }
+
+.proj-hero-content { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;padding:0 52px 72px;position:relative;z-index:2; }
+.proj-eyebrow { display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--signal);margin-bottom:28px;opacity:0;animation:riseIn .9s ease .2s forwards; }
+.proj-eyebrow::before { content:'';display:block;width:28px;height:1px;background:var(--signal); }
+.proj-title { font-family:var(--sans);font-weight:800;font-size:clamp(60px,9.5vw,140px);line-height:.86;letter-spacing:-.04em;opacity:0;animation:riseIn .9s ease .35s forwards; }
+.proj-title em { font-family:var(--serif);font-style:italic;font-weight:400;color:var(--cobalt-bright);display:block;font-size:.75em; }
+.proj-info-col { display:flex;flex-direction:column;justify-content:flex-end;gap:40px;opacity:0;animation:riseIn .9s ease .55s forwards; }
+.proj-specs { display:grid;grid-template-columns:1fr 1fr;gap:24px; }
+.spec-label { font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:6px; }
+.spec-value { font-family:var(--sans);font-weight:700;font-size:14px;color:var(--bone); }
+.proj-tagline { font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.8vw,22px);color:var(--bone-dim);line-height:1.55;padding-top:28px;border-top:1px solid var(--bone-ghost); }
+
+/* 21:9 hero image */
+.hero-cinema { width:100%;aspect-ratio:21/9;overflow:hidden;position:relative;background:var(--void); }
+.hero-cinema-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.hero-cinema:hover .hero-cinema-inner { transform:scale(1.02); }
+.img-fill { width:100%;height:100%;object-fit:cover;display:block; }
+
+/* ── SECTION LABEL ── */
+.sec-label { font-family:var(--mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--signal);display:flex;align-items:center;gap:12px;margin-bottom:28px; }
+.sec-label::before { content:'';display:block;width:20px;height:1px;background:var(--signal); }
+.sec-divider { border:none;border-top:1px solid var(--bone-ghost);margin:0; }
+
+/* ── THE BRIEF ── */
+.brief-section { padding:96px 52px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;border-top:1px solid var(--bone-ghost); }
+.brief-img-col { position:sticky;top:120px; }
+.brief-img { aspect-ratio:1/1;overflow:hidden;position:relative; }
+.brief-img-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center; }
+.brief-text-col {}
+.brief-heading { font-family:var(--serif);font-style:italic;font-size:clamp(26px,3vw,42px);line-height:1.2;color:var(--bone);margin-bottom:32px; }
+.brief-heading strong { font-style:normal;font-family:var(--sans);font-weight:800;color:var(--cobalt-bright); }
+.brief-body { font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.5vw,19px);line-height:1.8;color:var(--bone-dim); }
+.brief-body p + p { margin-top:18px; }
+
+/* ── 4:3 PAIR ── */
+.pair-section { display:grid;grid-template-columns:1fr 1fr;gap:3px;border-top:1px solid var(--bone-ghost); }
+.pair-img { aspect-ratio:4/3;overflow:hidden;position:relative; }
+.pair-img-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.pair-img:hover .pair-img-inner { transform:scale(1.03); }
+
+/* ── PROCESS ── */
+.process-section { padding:96px 52px;display:grid;grid-template-columns:280px 1fr;gap:80px;border-top:1px solid var(--bone-ghost); }
+.process-label-col { position:sticky;top:120px; }
+.process-num { font-family:var(--sans);font-weight:800;font-size:clamp(80px,10vw,130px);line-height:.88;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px rgba(63,85,245,.18); }
+.process-steps { display:flex;flex-direction:column; }
+.process-step { padding:36px 0;border-bottom:1px solid var(--bone-ghost);display:grid;grid-template-columns:44px 1fr;gap:24px;align-items:start;position:relative;overflow:hidden;transition:padding-left .3s cubic-bezier(.4,0,.2,1); }
+.process-step:first-child { border-top:1px solid var(--bone-ghost); }
+.process-step::before { content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--cobalt-bright);transform:scaleY(0);transform-origin:bottom;transition:transform .35s cubic-bezier(.4,0,.2,1); }
+.process-step:hover::before { transform:scaleY(1); }
+.process-step:hover { padding-left:10px; }
+.step-num { font-family:var(--mono);font-size:10px;color:var(--cobalt-bright);letter-spacing:.1em;padding-top:3px; }
+.step-title { font-family:var(--sans);font-weight:700;font-size:16px;color:var(--bone);margin-bottom:8px; }
+.step-desc { font-family:var(--serif);font-style:italic;font-size:14px;color:var(--bone-dim);line-height:1.7; }
+
+/* ── GALLERY SPLIT ── */
+.gallery-section { border-top:1px solid var(--bone-ghost);display:grid;grid-template-columns:1fr 1fr;gap:3px; }
+.gallery-left { aspect-ratio:5/4;overflow:hidden;position:relative; }
+.gallery-left-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.gallery-left:hover .gallery-left-inner { transform:scale(1.03); }
+.gallery-right { display:grid;grid-template-rows:auto auto;gap:3px; }
+.gallery-right-top { aspect-ratio:4/3;overflow:hidden;position:relative; }
+.gallery-right-top-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.gallery-right-top:hover .gallery-right-top-inner { transform:scale(1.03); }
+.gallery-right-bot { aspect-ratio:3/1;overflow:hidden;position:relative; }
+.gallery-right-bot-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.gallery-right-bot:hover .gallery-right-bot-inner { transform:scale(1.03); }
+
+/* ── OUTCOME ── */
+.outcome-section { padding:96px 52px;border-top:1px solid var(--bone-ghost);background:var(--void-2);position:relative;overflow:hidden; }
+.outcome-section::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,var(--cobalt-glow) 0%,transparent 65%);pointer-events:none; }
+.outcome-header { display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:start;margin-bottom:64px; }
+.outcome-big-num { font-family:var(--sans);font-weight:800;font-size:clamp(80px,12vw,160px);line-height:.88;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(63,85,245,.25);position:relative;z-index:2; }
+.outcome-statement { font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.4vw,34px);line-height:1.35;color:var(--bone);position:relative;z-index:2; }
+.outcome-statement strong { font-style:normal;font-family:var(--sans);font-weight:800;color:var(--cobalt-bright); }
+.outcome-metrics { display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--bone-ghost); }
+.metric-cell { background:var(--void-2);padding:36px 28px;position:relative;overflow:hidden;transition:background .4s; }
+.metric-cell:hover { background:var(--cobalt-dim); }
+.metric-cell::after { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--cobalt-bright);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1); }
+.metric-cell:hover::after { transform:scaleX(1); }
+.metric-num { font-family:var(--sans);font-weight:800;font-size:clamp(36px,4.5vw,58px);line-height:1;color:var(--cobalt-bright);margin-bottom:8px; }
+.metric-label { font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);line-height:1.5; }
+
+/* ── BRAND STANDARDS ── */
+.brand-section { padding:80px 52px;border-top:1px solid var(--bone-ghost); }
+.bs-block { margin-bottom:48px; }
+.bs-block-label { font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--signal);margin-bottom:18px;display:flex;align-items:center;gap:14px; }
+.bs-block-label::before { content:'';display:block;width:24px;height:1px;background:var(--signal); }
+.palette-row { display:flex;gap:3px;flex-wrap:wrap; }
+.swatch { flex:1;min-width:72px;aspect-ratio:3/4;border-radius:2px;display:flex;flex-direction:column;justify-content:flex-end;padding:10px 8px;overflow:hidden; }
+.swatch-name,.swatch-hex { font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;mix-blend-mode:difference;color:white;display:block; }
+.swatch-hex { opacity:.6;margin-top:2px; }
+.type-row { display:grid;grid-template-columns:repeat(3,1fr);gap:3px; }
+.type-sample { padding:24px;border:1px solid var(--bone-ghost);border-radius:2px; }
+.type-display { font-family:var(--sans);font-weight:800;font-size:clamp(18px,2.5vw,34px);letter-spacing:-.03em;line-height:1;margin-bottom:8px;color:var(--bone); }
+.type-display.serif { font-family:var(--serif);font-style:italic;font-weight:400; }
+.type-display.mono { font-family:var(--mono);font-size:clamp(14px,1.8vw,26px);letter-spacing:.04em; }
+.type-meta { font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);opacity:.7;margin-top:8px; }
+
+/* ── APPAREL (TC only) ── */
+.merch-section { padding:96px 52px;border-top:1px solid var(--bone-ghost);position:relative;overflow:hidden; }
+.merch-section::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(188,160,72,.06) 0%,transparent 60%);pointer-events:none; }
+.merch-header { margin-bottom:64px;max-width:600px; }
+.merch-title { font-family:var(--sans);font-weight:800;font-size:clamp(40px,6vw,84px);line-height:.9;letter-spacing:-.04em;color:var(--bone);margin:14px 0 18px; }
+.merch-sub { font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.5vw,19px);color:var(--bone-dim);line-height:1.6; }
+.merch-grid { display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:72px; }
+.merch-item { display:flex;flex-direction:column; }
+.merch-img-wrap { aspect-ratio:3/4;overflow:hidden;position:relative;transition:transform .5s cubic-bezier(.4,0,.2,1); }
+.merch-img-wrap:hover { transform:scale(1.02); }
+.merch-img { width:100%;height:100%;object-fit:contain;object-position:center 85%;display:block;filter:drop-shadow(0 20px 48px rgba(0,0,0,.7));transform:scale(1.12) translateY(-4%);transition:transform .6s cubic-bezier(.4,0,.2,1),filter .6s; }
+.merch-img-wrap:hover .merch-img { transform:translateY(-8%) scale(1.14);filter:drop-shadow(0 32px 64px rgba(0,0,0,.9)); }
+.merch-caption { padding:12px 0 0;display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--bone-ghost); }
+.merch-cap-label { font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:#BCA048; }
+.merch-cap-name { font-family:var(--sans);font-weight:700;font-size:11px;color:var(--bone); }
+
+/* ── ALL PROJECTS NAV ── */
+.all-projects-nav { padding:56px 52px;border-top:1px solid var(--bone-ghost); }
+.apn-label { font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:22px;display:flex;align-items:center;gap:12px; }
+.apn-label::before { content:'';display:block;width:20px;height:1px;background:var(--bone-dim); }
+.apn-grid { display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--bone-ghost);border:1px solid var(--bone-ghost);border-radius:2px;overflow:hidden; }
+.apn-item { display:flex;flex-direction:column;gap:6px;padding:18px 14px 22px;text-decoration:none;color:var(--bone);background:var(--void);transition:background .25s; }
+.apn-item:hover { background:var(--void-2); }
+.apn-item.active { background:var(--cobalt-dim); }
+.apn-num { font-family:var(--mono);font-size:8px;letter-spacing:.2em;color:var(--signal);display:block; }
+.apn-item.active .apn-num::before { content:'✦ '; }
+.apn-name { font-family:var(--serif);font-style:italic;font-size:clamp(11px,1vw,14px);line-height:1.25;color:var(--bone);display:block;position:relative; }
+.apn-cat { font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);display:block; }
+@keyframes glitchName { 0%,100%{transform:translate(0);text-shadow:none} 15%{transform:translate(-3px,0);text-shadow:3px 0 rgba(255,0,64,.7),-3px 0 rgba(0,255,238,.7)} 30%{transform:translate(3px,0);text-shadow:-3px 0 rgba(255,0,64,.7),3px 0 rgba(0,255,238,.7)} 50%{transform:translate(-1px,0);text-shadow:2px 0 rgba(255,0,64,.4)} 70%{transform:translate(1px,0);text-shadow:none} }
+.apn-item:not(.active):hover .apn-name { animation:glitchName .36s cubic-bezier(.4,0,.2,1) forwards; }
+
+/* ── FOOTER ── */
+footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;justify-content:space-between;align-items:center; }
+.f-logo { font-family:var(--sans);font-weight:800;font-size:13px;letter-spacing:.06em; }
+.f-copy { font-family:var(--mono);font-size:10px;color:var(--bone-dim);letter-spacing:.1em; }
+.f-loc { font-family:var(--mono);font-size:10px;color:var(--signal);letter-spacing:.15em;text-transform:uppercase; }
+
+/* ── REVEAL ── */
+.reveal { opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1); }
+.reveal.visible { opacity:1;transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+.reveal-delay-3 { transition-delay:.3s; }
+@keyframes riseIn { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .proj-hero-content,.brief-section,.outcome-header,.process-section { grid-template-columns:1fr;gap:40px; }
+  .proj-hero-content { padding:0 36px 56px; }
+  .brief-section,.process-section,.outcome-section,.brand-section,.merch-section,.all-projects-nav { padding-left:36px;padding-right:36px; }
+  .brief-img-col { position:static; }
+  .pair-section { grid-template-columns:1fr; }
+  .pair-img { aspect-ratio:16/9; }
+  .gallery-section { grid-template-columns:1fr; }
+  .gallery-left { aspect-ratio:16/9; }
+  .gallery-right { grid-template-rows:auto auto; }
+  .gallery-right-top { aspect-ratio:16/9; }
+  .gallery-right-bot { aspect-ratio:16/5; }
+  .apn-grid { grid-template-columns:repeat(4,1fr); }
+  .outcome-metrics { grid-template-columns:repeat(3,1fr); }
+  .merch-grid { grid-template-columns:repeat(3,1fr); }
 }
-@keyframes ransomCharItalicSMT {
-  0%   { transform: translateY(0) rotate(0deg) scale(1); font-family: var(--serif); font-style: italic; font-weight: 400; }
-  15%  { transform: translateY(-0.2em) rotate(5deg) scale(1.2); font-family: var(--sans); font-weight: 800; font-style: normal; }
-  30%  { transform: translateY(0.12em) rotate(-4deg) scale(0.84); font-family: var(--mono); font-style: normal; }
-  50%  { transform: translateY(-0.14em) rotate(3deg) scale(1.22); font-family: var(--script); font-weight: 400; font-style: normal; }
-  70%  { transform: translateY(0.05em) rotate(-1.5deg) scale(0.96); font-family: var(--blackletter); font-weight: 400; }
-  85%  { transform: translateY(-0.02em) rotate(0.5deg) scale(1.02); font-family: var(--serif); font-style: italic; }
-  100% { transform: translateY(0) rotate(0deg) scale(1); font-family: var(--serif); font-style: italic; font-weight: 400; }
-}
-@media (max-width: 1024px) {
-  .proj-hero-content { grid-template-columns: 1fr; gap: 40px; }
-  .brief-section { grid-template-columns: 1fr; gap: 40px; }
-  .brief-label-col { position: static; }
-  .process-section { grid-template-columns: 1fr; gap: 40px; }
-  .outcome-header { grid-template-columns: 1fr; gap: 40px; }
-  .outcome-metrics { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 768px) {
-  nav { padding: 24px 28px; }
-  .proj-hero-content { padding: 0 28px 48px; }
-  .brief-section { padding: 80px 28px; }
-  .process-section { padding: 80px 28px; }
-  .outcome-section { padding: 80px 28px; }
-  .gallery-header { padding: 52px 28px 36px; }
-  .next-project { padding: 52px 28px; }
-  footer { padding: 28px; flex-direction: column; gap: 12px; text-align: center; }
-  .outcome-metrics { grid-template-columns: 1fr; }
-  .img-grid.two-col { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: 1fr; }
-  .g1, .g2, .g3, .g4, .g5, .g6 { grid-column: 1; }
-  .g2.tall { aspect-ratio: 16/9; }
-}
-@media (max-width: 480px) {
-  .proj-title { font-size: clamp(40px, 12vw, 70px); }
-  .proj-specs { grid-template-columns: 1fr; }
+@media(max-width:768px){
+  .proj-hero-content,.brief-section,.process-section { padding:0 20px 48px;gap:32px; }
+  .brief-section,.process-section,.outcome-section,.brand-section,.merch-section,.all-projects-nav { padding-left:20px;padding-right:20px; }
+  nav { padding:24px 20px; }
+  .apn-grid { grid-template-columns:repeat(2,1fr); }
+  .outcome-metrics { grid-template-columns:1fr 1fr; }
+  .type-row { grid-template-columns:1fr; }
+  .merch-grid { grid-template-columns:1fr 1fr; }
+  footer { padding:24px 20px;flex-direction:column;gap:12px;text-align:center; }
 }
 
-/* ══════════════════════════
-   ALL PROJECTS NAV
-══════════════════════════ */
-.all-projects-nav { padding: 60px 52px; border-top: 1px solid var(--bone-ghost); }
-.apn-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bone-dim); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-.apn-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--bone-dim); }
-.apn-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 1px; background: var(--bone-ghost); border: 1px solid var(--bone-ghost); border-radius: 2px; overflow: hidden; }
-.apn-item { display: flex; flex-direction: column; gap: 8px; padding: 20px 16px 24px; text-decoration: none; color: var(--bone); background: var(--void); transition: background 0.25s; }
-.apn-item:hover  { background: var(--void-2); }
-.apn-item.active { background: var(--cobalt-dim); }
-.apn-num { font-family: var(--mono); font-size: 8px; letter-spacing: 0.2em; color: var(--signal); display: block; }
-.apn-item.active .apn-num::before { content: '✦ '; }
-.apn-name { font-family: var(--serif); font-style: italic; font-size: clamp(12px,1.1vw,15px); line-height: 1.25; color: var(--bone); display: block; position: relative; }
-.apn-cat  { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bone-dim); display: block; }
-@keyframes glitchName {
-  0%,100% { transform: translate(0);       text-shadow: none; }
-  15%      { transform: translate(-3px,0);  text-shadow:  3px 0 rgba(255,0,64,.7),-3px 0 rgba(0,255,238,.7); }
-  30%      { transform: translate( 3px,0);  text-shadow: -3px 0 rgba(255,0,64,.7), 3px 0 rgba(0,255,238,.7); }
-  50%      { transform: translate(-1px,0);  text-shadow:  2px 0 rgba(255,0,64,.4); }
-  70%      { transform: translate( 1px,0);  text-shadow: none; }
+/* ── PROJECT ACCENT ── */
+:root {
+  --accent: #4fc3f7;
 }
-.apn-item:not(.active):hover .apn-name { animation: glitchName 0.36s cubic-bezier(0.4,0,0.2,1) forwards; }
-@media (max-width: 1024px) { .all-projects-nav { padding: 52px 36px; } .apn-grid { grid-template-columns: repeat(4,1fr); } }
-@media (max-width: 768px)  { .all-projects-nav { padding: 48px 20px; } .apn-grid { grid-template-columns: repeat(2,1fr); } .apn-item { padding: 16px 14px 18px; } }
-@media (max-width: 480px)  { .apn-grid { grid-template-columns: 1fr 1fr; } }
+.proj-eyebrow { color:#4fc3f7; }
+.proj-eyebrow::before { background:#4fc3f7; }
+.sec-label { color:#4fc3f7; }
+.sec-label::before { background:#4fc3f7; }
+.step-num { color:#4fc3f7; }
+.process-step::before { background:#4fc3f7; }
+.bs-block-label { color:#4fc3f7; }
+.bs-block-label::before { background:#4fc3f7; }
+.apn-num { color:#4fc3f7; }
+.metric-num { color:#4fc3f7; }
+.proj-hero-glow { background:radial-gradient(circle,rgba(79,195,247,.18) 0%,transparent 65%); }
+.proj-hero-grid { background-image:linear-gradient(rgba(79,195,247,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,195,247,.05) 1px,transparent 1px); }
+.proj-title em { color:#4fc3f7; }
+.brief-heading strong { color:#4fc3f7; }
+.outcome-statement strong { color:#4fc3f7; }
+.f-loc { color:#4fc3f7; }
 </style>
 </head>
 <body>
+<div id="flash" class="flash-overlay"></div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
-<div class="flash-overlay" id="flashOverlay"></div>
+
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
-  <a href="index.html#work" class="nav-back"><span>&#8592;</span> All Work</a>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <span class="switch-label" id="switchLabel">Dark</span>
-    <label class="light-switch" title="Turn the lights on">
-      <input type="checkbox" id="lightToggle">
-      <div class="switch-track"><div class="switch-thumb">&#128161;</div></div>
+  <a href="index.html" class="nav-back"><span>←</span> All Work</a>
+  <div class="nav-right">
+    <span class="switch-label">Dark</span>
+    <label class="light-switch" for="light-sw">
+      <input type="checkbox" id="light-sw">
+      <div class="switch-track"><div class="switch-thumb"></div></div>
     </label>
   </div>
 </nav>
 
+<!-- ══ HERO ══ -->
 <section class="proj-hero">
-  <div class="proj-hero-glow" data-parallax="0.12"></div>
-  <div class="proj-hero-grid" data-parallax="0.06"></div>
+  <div class="proj-hero-bg">
+    <div class="proj-hero-glow"></div>
+    <div class="proj-hero-grid"></div>
+  </div>
   <div class="proj-hero-content">
     <div class="proj-meta-col">
-      <p class="proj-eyebrow">Growth Web Design · UX Research · Product Strategy</p>
-      <h1 class="proj-title" style="line-height:0.86;">
-        <span class="ransom-word" id="ransomLine1">
-          <span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span><span class="ransom-letter"><span class="ghost">H</span><span class="char">H</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span>
-        </span><br>
-        <span class="ransom-word" id="ransomLine2">
-          <span class="ransom-letter"><span class="ghost">M</span><span class="char">M</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span>
-        </span><br>
-        <span class="ransom-word" id="ransomLine3">
-          <span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">V</span><span class="char">V</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span>
-        </span><br>
-        <em style="display:block;margin-top:-0.04em;">
-          <span class="ransom-word is-italic" id="ransomSubtitle">
-            <span class="ransom-letter"><span class="ghost">G</span><span class="char">G</span></span><span class="ransom-letter"><span class="ghost">r</span><span class="char">r</span></span><span class="ransom-letter"><span class="ghost">o</span><span class="char">o</span></span><span class="ransom-letter"><span class="ghost">w</span><span class="char">w</span></span><span class="ransom-letter"><span class="ghost">t</span><span class="char">t</span></span><span class="ransom-letter"><span class="ghost">h</span><span class="char">h</span></span><span class="ransom-letter"><span class="ghost">&nbsp;</span><span class="char">&nbsp;</span></span><span class="ransom-letter"><span class="ghost">W</span><span class="char">W</span></span><span class="ransom-letter"><span class="ghost">e</span><span class="char">e</span></span><span class="ransom-letter"><span class="ghost">b</span><span class="char">b</span></span><span class="ransom-letter"><span class="ghost">&nbsp;</span><span class="char">&nbsp;</span></span><span class="ransom-letter"><span class="ghost">D</span><span class="char">D</span></span><span class="ransom-letter"><span class="ghost">e</span><span class="char">e</span></span><span class="ransom-letter"><span class="ghost">s</span><span class="char">s</span></span><span class="ransom-letter"><span class="ghost">i</span><span class="char">i</span></span><span class="ransom-letter"><span class="ghost">g</span><span class="char">g</span></span><span class="ransom-letter"><span class="ghost">n</span><span class="char">n</span></span>
-          </span>
-        </em>
-      </h1>
+      <div class="proj-eyebrow">Growth Web Design · UX Research · Product Strategy</div>
+      <h1 class="proj-title">SHOOT MY
+TRAVEL<em>Growth Web Design</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
-        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Shoot My Travel</div></div>
-        <div class="spec"><div class="spec-label">Year</div><div class="spec-value">2023</div></div>
-        <div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Growth Web Design / UX Research</div></div>
-        <div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Travel / Photography / Platform</div></div>
+        <div class="spec"><div class="spec-label">Client</div><div class="spec-value">Shoot My Travel</div></div><div class="spec"><div class="spec-label">Year</div><div class="spec-value">2023</div></div><div class="spec"><div class="spec-label">Scope</div><div class="spec-value">Growth Web Design / UX Research</div></div><div class="spec"><div class="spec-label">Industry</div><div class="spec-value">Travel / Photography / Platform</div></div>
       </div>
-      <p class="proj-tagline">Pain points turned into product opportunities. A dashboard rebuilt from user feedback — making it easier for photographers and travelers to find each other in the places that matter.</p>
+      <p class="proj-tagline">Pain points turned into product opportunities. A dashboard rebuilt from user feedback — making it easier for photographers and travelers to find each other.</p>
     </div>
   </div>
-  <div class="proj-hero-img">
-    <div class="proj-hero-img-inner" data-parallax-inner="0.2">
-      <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 01</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">WorkingFile_ShootMyTravel_SS_Site.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — Website</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
-    </div>
-    <div class="img-label">Shoot My Travel / Growth Web Design</div>
+  <div class="hero-cinema">
+    <div class="hero-cinema-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 01</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-website.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Shoot My Travel — website redesign</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">21:9 · cinema</div>
+</div></div>
   </div>
 </section>
 
+<!-- ══ THE BRIEF ══ -->
 <section class="brief-section">
-  <div class="brief-label-col reveal">
-    <div class="section-marker">The Brief</div>
-    <div class="section-num">01</div>
+  <div class="brief-img-col reveal">
+    <div class="sec-label">The Brief</div>
+    <div class="brief-img">
+      <div class="brief-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 02</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-uiux.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">UI/UX — dashboard view</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 · square</div>
+</div></div>
+    </div>
   </div>
-  <div class="brief-content-col">
-    <h2 class="brief-heading reveal">
-      The users knew what was wrong. The job was to <strong>turn that into a roadmap.</strong>
-    </h2>
-    <div class="brief-body reveal reveal-delay-1">
-      <p>Shoot My Travel is a photography booking platform connecting travelers with local photographers in destinations around the world. The product worked — but users were dropping off, sessions were going unboosted, and photographers weren't getting enough visibility. The platform had growth problems that looked like design problems.</p>
-      <p>The engagement started with a listening exercise: direct inquiry to users on where the site was creating friction, and what would make them book faster or more often. Those pain points became the brief. The result was a reassessment of the photographer dashboard and booking flow — rebuilding the key interactions around what would actually move the needle for both sides of the platform.</p>
-    </div>
-    <div class="img-grid two-col reveal reveal-delay-2" style="margin-top:52px;">
-      <div class="img-block wide">
-        <div class="img-block-inner">
-          <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 02</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">SMT_UIUX.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — UI/UX</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
-        </div>
-      </div>
-      <div class="img-block wide">
-        <div class="img-block-inner">
-          <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 03</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">SMT_UIUX2.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — Booking Flow</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
-        </div>
-      </div>
-    </div>
+  <div class="brief-text-col reveal reveal-delay-2">
+    <h2 class="brief-heading">The users knew what was wrong. The job was to <strong>turn that into a roadmap.</strong></h2>
+    <div class="brief-body"><p>Shoot My Travel is a photography booking platform connecting travelers with local photographers in destinations around the world. The product worked — but users were dropping off and photographers weren't getting enough visibility.</p><p>The engagement started with a listening exercise: direct inquiry to users on where the site was creating friction, and what would make them book faster or more often. The answers became the brief.</p></div>
   </div>
 </section>
 
+<!-- ══ 4:3 PAIR ══ -->
+<div class="pair-section">
+  <div class="pair-img reveal">
+    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 03</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-uiux2.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Booking flow — redesigned</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
+  </div>
+  <div class="pair-img reveal reveal-delay-2">
+    <div class="pair-img-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 04</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-collection.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Sample photography collection page</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
+  </div>
+</div>
+
+<!-- ══ PROCESS ══ -->
 <section class="process-section">
-  <div class="brief-label-col reveal">
-    <div class="section-marker">Process</div>
-    <div class="section-num">02</div>
+  <div class="process-label-col reveal">
+    <div class="sec-label">Process</div>
+    <div class="process-num">04</div>
   </div>
-  <div>
-    <div class="process-steps">
-      <div class="process-step reveal">
-        <span class="step-num">01</span>
-        <div class="step-content">
-          <div class="step-title">User Pain Point Mapping</div>
-          <div class="step-desc">Before a single wireframe, we talked to users. Direct inquiry — where are you losing momentum? What's stopping you from booking? What do photographers say isn't working? The answers came back fast: discovery was buried, trust signals were weak, and the booking flow had too many exits. Each pain point became a design brief.</div>
-        </div>
-      </div>
-      <div class="process-step reveal reveal-delay-1">
-        <span class="step-num">02</span>
-        <div class="step-content">
-          <div class="step-title">Dashboard Reassessment</div>
-          <div class="step-desc">The photographer dashboard was the core of the platform's supply side — if photographers couldn't manage their visibility easily, the whole system suffered. The reassessment restructured the dashboard around the actions that actually drove bookings: portfolio quality, availability, response rate. Clear prioritization. Less noise.</div>
-        </div>
-      </div>
-      <div class="process-step reveal reveal-delay-2">
-        <span class="step-num">03</span>
-        <div class="step-content">
-          <div class="step-title">Turning Friction into Opportunity</div>
-          <div class="step-desc">Every pain point had a stakeholder opportunity behind it. Slow discovery → better search and filter logic. Weak trust → review architecture and photographer verification signals. Drop-off in booking → step reduction and clearer confirmation. The solutions weren't just design fixes — they were product decisions pitched back to the team as growth levers.</div>
-        </div>
-      </div>
-      <div class="process-step reveal reveal-delay-3">
-        <span class="step-num">04</span>
-        <div class="step-content">
-          <div class="step-title">Communication and Ops Improvements</div>
-          <div class="step-desc">Some of the highest-impact changes weren't UI changes at all — they were communication and operations recommendations. Automated follow-up timing, photographer onboarding flow improvements, destination page copy that addressed booking hesitation before users felt it. Growth web design means touching the whole user journey, not just the pixels.</div>
-        </div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;margin-top:3px;">
-      <div class="img-block square reveal" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
-          <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
-          <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-mobile-screens.jpg</div>
-        </div>
-      </div>
-      <div class="img-block square reveal reveal-delay-1" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
-          <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
-          <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-photographer-profile.jpg</div>
-        </div>
-      </div>
-      <div class="img-block square reveal reveal-delay-2" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-        <div class="img-block-inner" style="flex-direction:column;gap:6px;">
-          <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
-          <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-ui-components.jpg</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="process-steps"><div class="process-step reveal reveal-delay-1">
+  <div class="step-num">01</div>
+  <div><div class="step-title">User Pain Point Mapping</div><div class="step-desc">Before a single wireframe, we talked to users. Direct inquiry — where are you losing momentum? What's stopping you from booking? The answers revealed patterns no analytics dashboard would show.</div></div>
+</div>
+<div class="process-step reveal reveal-delay-2">
+  <div class="step-num">02</div>
+  <div><div class="step-title">Dashboard Reassessment</div><div class="step-desc">The photographer dashboard was the core of the platform's supply side — if photographers couldn't manage their visibility, travelers couldn't find them. It needed a complete rethink.</div></div>
+</div>
+<div class="process-step reveal reveal-delay-3">
+  <div class="step-num">03</div>
+  <div><div class="step-title">Turning Friction into Opportunity</div><div class="step-desc">Every pain point had a stakeholder opportunity behind it. Slow discovery became better search and filter logic. Weak trust signals became a clearer photographer profile system.</div></div>
+</div>
+<div class="process-step reveal reveal-delay-3">
+  <div class="step-num">04</div>
+  <div><div class="step-title">Communication and Ops Improvements</div><div class="step-desc">Some of the highest-impact changes weren't UI changes at all — they were communication and operations recommendations. Automated follow-ups, clearer booking confirmation, better response time expectations.</div></div>
+</div>
+</div>
 </section>
 
-<div class="full-bleed reveal">
-  <div class="img-block cinema" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-    <div class="img-block-inner" style="flex-direction:column;gap:8px;">
-      <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">21:9 Widescreen</div>
-      <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-full-site-preview.jpg</div>
+<!-- ══ GALLERY SPLIT ══ -->
+<div class="gallery-section">
+  <div class="gallery-left reveal">
+    <div class="gallery-left-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 05</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-mobile.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Mobile — photographer profile view</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">5:4 · tall</div>
+</div></div>
+  </div>
+  <div class="gallery-right">
+    <div class="gallery-right-top reveal reveal-delay-1">
+      <div class="gallery-right-top-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 06</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-search.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Destination search — improved filter UI</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
+</div></div>
+    </div>
+    <div class="gallery-right-bot reveal reveal-delay-2">
+      <div class="gallery-right-bot-inner"><div class="img-ph" style="background:#1a1a2e;border:1.5px dashed #4fc3f7;width:100%;height:100%;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
+  <div style="font-size:22px;opacity:0.4;">⬚</div>
+  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#4fc3f7;opacity:.8;">Slot 07</div>
+  <div style="font-size:10px;font-weight:700;color:#ede8df;word-break:break-all;max-width:220px;">smt-flow.jpg</div>
+  <div style="font-size:8px;color:#ede8df;opacity:.45;max-width:200px;line-height:1.4;">Booking flow diagram — before / after</div>
+  <div style="margin-top:4px;padding:3px 8px;background:#4fc3f7;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">3:1 · wide</div>
+</div></div>
     </div>
   </div>
 </div>
 
+<!-- ══ OUTCOME ══ -->
 <section class="outcome-section">
   <div class="outcome-header reveal">
-    <div>
-      <div class="section-marker">Outcome</div>
-      <div class="section-num">03</div>
-    </div>
-    <p class="outcome-statement">Pain points documented. Dashboard rebuilt. Friction converted into opportunity. <strong>Users telling you what to build is the best brief you can get.</strong></p>
+    <div class="outcome-big-num">3</div>
+    <p class="outcome-statement">Pain points documented. Dashboard rebuilt. <strong>Friction converted into opportunity.</strong> Users telling you what to build is the best brief you can get.</p>
   </div>
-  <div class="outcome-metrics reveal reveal-delay-1">
-    <div class="metric-cell">
-      <div class="metric-num">1</div>
-      <div class="metric-label">Dashboard reassessment — supply side rebuilt</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-num">3+</div>
-      <div class="metric-label">Product opportunities surfaced from user research</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-num">&#8734;</div>
-      <div class="metric-label">Destinations — platform built to scale globally</div>
-    </div>
-  </div>
-  <a href="Lucho_Resume_2026_.pdf" download style="display:inline-flex;align-items:center;gap:10px;font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;margin-top:48px;position:relative;z-index:2;border-bottom:1px solid rgba(237,232,223,0.15);padding-bottom:4px;transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cobalt-bright)';this.style.borderColor='var(--cobalt-bright)'" onmouseout="this.style.color='var(--bone-dim)';this.style.borderColor='rgba(237,232,223,0.15)'">
-    Looking to hire? &nbsp;&#8595; Download CV
-  </a>
+  <div class="outcome-metrics"><div class="metric-cell reveal"><div class="metric-num">1</div><div class="metric-label">Dashboard reassessment — supply side rebuilt</div></div>
+<div class="metric-cell reveal"><div class="metric-num">3+</div><div class="metric-label">Product opportunities surfaced from user research</div></div>
+<div class="metric-cell reveal"><div class="metric-num">∞</div><div class="metric-label">Destinations — platform built to scale globally</div></div>
+</div>
 </section>
 
-<section class="final-gallery">
-  <div class="gallery-header reveal">
-    <div>
-      <div class="section-marker">Gallery</div>
-      <h3 style="font-family:var(--sans);font-weight:800;font-size:clamp(36px,4vw,56px);letter-spacing:-0.03em;line-height:0.9;">Final <em style="font-family:var(--serif);font-weight:400;font-style:italic;color:var(--cobalt-bright);">Work</em></h3>
-    </div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--bone-dim);letter-spacing:0.12em;">06 Images</div>
+<!-- ══ BRAND STANDARDS ══ -->
+<section class="brand-section reveal">
+  <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+  <div class="bs-block">
+    <div class="bs-block-label">Color Palette</div>
+    <div class="palette-row"><div class="swatch" style="background:#1a1a2e;"><span class="swatch-name">Deep Midnight</span><span class="swatch-hex">#1a1a2e</span></div>
+<div class="swatch" style="background:#4fc3f7;"><span class="swatch-name">Sky Blue</span><span class="swatch-hex">#4fc3f7</span></div>
+<div class="swatch" style="background:#FFFFFF;"><span class="swatch-name">White</span><span class="swatch-hex">#FFFFFF</span></div>
+</div>
   </div>
-  <div class="gallery-grid">
-    <div class="img-block g1" style="aspect-ratio:unset;min-height:380px;border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-      <div class="img-block-inner" style="flex-direction:column;gap:6px;">
-        <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">7 Col Wide</div>
-        <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-homepage-hero.jpg</div>
+  <div class="bs-block">
+    <div class="bs-block-label">Typography</div>
+    <div class="type-row">
+      <div class="type-sample">
+        <div class="type-display">Aa Bb Cc</div>
+        <div class="type-meta">Syne · 800 · Display / Headlines</div>
       </div>
-    </div>
-    <div class="img-block tall g2">
-      <div class="img-block-inner">
-        <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 04</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">SMTMOG_SampleCollection.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — Sample Collection</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
+      <div class="type-sample">
+        <div class="type-display serif">Aa Bb Cc</div>
+        <div class="type-meta">Instrument Serif · Italic · Body / Quotes</div>
       </div>
-    </div>
-    <div class="img-block square g3">
-      <div class="img-block-inner">
-        <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 05</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">SMT_UIUX.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — UI</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
-      </div>
-    </div>
-    <div class="img-block square g4">
-      <div class="img-block-inner">
-        <div style="
-  width:100%; height:100%;
-  min-height:200px;
-  background:#1a1a2e;
-  border:2px dashed #4fc3f7;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  box-sizing:border-box;
-  text-align:center;
-  gap:8px;
-  font-family:'Syne Mono',monospace;
-">
-  <div style="font-size:28px;opacity:0.6;">⬚</div>
-  <div style="
-    font-size:10px;
-    letter-spacing:0.2em;
-    text-transform:uppercase;
-    color:#4fc3f7;
-    opacity:0.7;
-  ">Slot 06</div>
-  <div style="
-    font-size:11px;
-    font-weight:700;
-    color:#c8e8ff;
-    word-break:break-all;
-    max-width:280px;
-  ">SMT_UIUX2.jpg</div>
-  <div style="
-    font-size:9px;
-    color:#c8e8ff;
-    opacity:0.55;
-    max-width:260px;
-    line-height:1.5;
-  ">Shoot My Travel — Dashboard</div>
-  <div style="
-    margin-top:4px;
-    padding:4px 10px;
-    background:#4fc3f7;
-    color:#000;
-    font-size:8px;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    border-radius:2px;
-    opacity:0.85;
-  ">fill — inherits container</div>
-  <div style="
-    font-size:8px;
-    color:#c8e8ff;
-    opacity:0.4;
-    margin-top:2px;
-  ">Squarespace CDN — needs re-upload</div>
-</div>
-      </div>
-    </div>
-    <div class="img-block square g5" style="border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-      <div class="img-block-inner" style="flex-direction:column;gap:6px;">
-        <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">1:1 Square</div>
-        <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-typography-system.jpg</div>
-      </div>
-    </div>
-    <div class="img-block g6" style="aspect-ratio:unset;min-height:260px;border:1.5px dashed rgba(255,20,147,0.35);background:rgba(255,20,147,0.06);">
-      <div class="img-block-inner" style="flex-direction:column;gap:8px;">
-        <div style="font-family:'Syne Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,20,147,0.5);text-transform:uppercase;text-align:center;">Full Width</div>
-        <div style="font-family:'Syne Mono',monospace;font-size:8px;letter-spacing:0.15em;color:rgba(255,20,147,0.35);text-transform:uppercase;text-align:center;">smt-responsive-screens.jpg</div>
+      <div class="type-sample">
+        <div class="type-display mono">Aa Bb Cc</div>
+        <div class="type-meta">Syne Mono · Labels / UI / Data</div>
       </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- ══ ALL PROJECTS ══ -->
-<div class="all-projects-nav">
+<div class="all-projects-nav reveal">
   <div class="apn-label">All Projects</div>
-  <div class="apn-grid">
-    <a href="SPRB-triple-crown.html" class="apn-item">
-      <span class="apn-num">01</span>
-      <span class="apn-name">Triple Crown</span>
-      <span class="apn-cat">Brand Identity</span>
-    </a>
-    <a href="SPRB-mbaf.html" class="apn-item">
-      <span class="apn-num">02</span>
-      <span class="apn-name">Made by a Farmer</span>
-      <span class="apn-cat">Agriculture</span>
-    </a>
-    <a href="SPRB-litlabs.html" class="apn-item">
-      <span class="apn-num">03</span>
-      <span class="apn-name">Lit Labs</span>
-      <span class="apn-cat">Beverage</span>
-    </a>
-    <a href="SPRB-properroots.html" class="apn-item">
-      <span class="apn-num">04</span>
-      <span class="apn-name">Proper Roots</span>
-      <span class="apn-cat">Food &amp; Bev</span>
-    </a>
-    <a href="SPRB-socialyaks.html" class="apn-item">
-      <span class="apn-num">05</span>
-      <span class="apn-name">Social Yaks</span>
-      <span class="apn-cat">Card Game</span>
-    </a>
-    <a href="SPRB-shootmytravel.html" class="apn-item active">
-      <span class="apn-num">06</span>
-      <span class="apn-name">Shoot My Travel</span>
-      <span class="apn-cat">Growth Web</span>
-    </a>
-    <a href="SPRB-keybiscayne.html" class="apn-item">
-      <span class="apn-num">07</span>
-      <span class="apn-name">Key Biscayne</span>
-      <span class="apn-cat">Lettering</span>
-    </a>
-  </div>
+  <div class="apn-grid"><a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Brand Identity</span></a>
+<a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
+<a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
+<a href="SPRB-properroots.html" class="apn-item"><span class="apn-num">04</span><span class="apn-name">Proper Roots</span><span class="apn-cat">Rebranding</span></a>
+<a href="SPRB-socialyaks.html" class="apn-item"><span class="apn-num">05</span><span class="apn-name">Social Yaks</span><span class="apn-cat">Card Game</span></a>
+<a href="SPRB-shootmytravel.html" class="apn-item active"><span class="apn-num">06</span><span class="apn-name">Shoot My Travel</span><span class="apn-cat">Web / UX</span></a>
+<a href="SPRB-keybiscayne.html" class="apn-item"><span class="apn-num">07</span><span class="apn-name">Key Biscayne</span><span class="apn-cat">Lettering</span></a>
+</div>
 </div>
 
+<!-- FOOTER -->
 <footer>
-  <div class="f-logo">LUCHO ESCOBAR</div>
-  <div class="f-copy">&#169; 2026 Unapologetic Artsonist</div>
-  <div class="f-loc">Miami, FL</div>
+  <div class="f-logo">Lucho Escobar</div>
+  <div class="f-copy">© 2026 — Miami, FL</div>
+  <div class="f-loc">lamonda.co</div>
 </footer>
 
+
 <script>
+// Cursor
 const cur = document.getElementById('cur');
-const ring = document.getElementById('cur-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
-(function animRing() { rx += (mx - rx) * 0.1; ry += (my - ry) * 0.1; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animRing); })();
-document.querySelectorAll('a, .process-step, .metric-cell, .img-block').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
+const curR = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
+document.querySelectorAll('a,button,label,.apn-item,.process-step').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
 });
-const parallaxEls = document.querySelectorAll('[data-parallax]');
-const heroImgInner = document.querySelector('[data-parallax-inner]');
-function onScroll() {
-  parallaxEls.forEach(el => { const speed = parseFloat(el.dataset.parallax); const rect = el.getBoundingClientRect(); el.style.transform = `translateY(${(rect.top + rect.height / 2 - window.innerHeight / 2) * speed}px)`; });
-  if (heroImgInner) heroImgInner.style.transform = `translateY(${window.scrollY * 0.18}px)`;
-}
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-const toggle = document.getElementById('lightToggle');
-const flash = document.getElementById('flashOverlay');
-const lbl = document.getElementById('switchLabel');
-toggle.addEventListener('change', () => {
-  flash.classList.add('flash');
-  setTimeout(() => { document.body.classList.toggle('lights-on', toggle.checked); lbl.textContent = toggle.checked ? 'Light' : 'Dark'; flash.classList.remove('flash'); }, 80);
-});
-document.querySelectorAll('.ransom-word').forEach(word => {
-  const letters = word.querySelectorAll('.ransom-letter');
-  const isItalic = word.classList.contains('is-italic');
-  word.addEventListener('mouseenter', () => {
-    letters.forEach((l, i) => {
-      const char = l.querySelector('.char');
-      if (!char) return;
-      char.style.animation = 'none';
-      char.offsetHeight;
-      char.style.animation = isItalic
-        ? `ransomCharItalicSMT 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`
-        : `ransomCharSMT 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`;
-    });
-  });
-  word.addEventListener('mouseleave', () => { letters.forEach(l => { const char = l.querySelector('.char'); if (char) char.style.animation = 'none'; }); });
-});
+
+// Light switch
+const sw = document.getElementById('light-sw');
+const flash = document.getElementById('flash');
+if(sw){sw.addEventListener('change',()=>{flash.classList.add('flash');setTimeout(()=>{document.body.classList.toggle('lights-on',sw.checked);flash.classList.remove('flash');},80);});}
+
+// Reveal on scroll
+const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Parallax hero grid
+const heroGrid = document.querySelector('.proj-hero-grid');
+if(heroGrid){window.addEventListener('scroll',()=>{const s=window.scrollY;heroGrid.style.transform=`translateY(${s*.3}px)`;},{ passive:true });}
 </script>
+
 </body>
 </html>
