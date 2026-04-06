@@ -33,12 +33,7 @@ body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:
   background-size:180px; }
 
 /* CURSOR */
-#cur { width:10px;height:10px;background:var(--cobalt-bright);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .3s,height .3s,background .3s; }
-#cur-ring { width:36px;height:36px;border:1px solid rgba(63,85,245,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s,height .4s,border-color .3s; }
-body.hovered #cur { background:var(--signal);width:14px;height:14px; }
-body.hovered #cur-ring { width:56px;height:56px;border-color:rgba(157,255,91,0.4); }
-
-/* NAV */
+body.hovered body.hovered /* NAV */
 nav { position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:32px 52px; }
 nav::after { content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,6,10,.85),transparent);pointer-events:none;z-index:-1; }
 .nav-logo { font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;transition:color .3s; }
@@ -314,13 +309,59 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   100% { transform: translateY(0) rotate(0deg) scale(1);
            font-family: var(--sans); font-weight: 800; font-style: normal; }
 }
+
+/* ── STAR CURSOR ── */
+#cur {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  color: var(--cobalt-bright);
+  font-size: 22px;
+  line-height: 1;
+  mix-blend-mode: exclusion;
+  will-change: left, top;
+  transition: color 0.25s, font-size 0.2s;
+  user-select: none;
+}
+body.hovered #cur { color: var(--signal); font-size: 28px; }
+body.lights-on #cur { mix-blend-mode: multiply; }
+body.lights-on.hovered #cur { color: var(--signal); }
+
+.cursor-star {
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%, -50%);
+  color: var(--cobalt-bright);
+  line-height: 1;
+  opacity: 0;
+  mix-blend-mode: exclusion;
+  will-change: left, top, opacity;
+  user-select: none;
+  transition: color 0.25s;
+}
+#cstar-1 { font-size: 20px; }
+#cstar-2 { font-size: 16px; }
+#cstar-3 { font-size: 13px; }
+#cstar-4 { font-size: 10px; }
+#cstar-5 { font-size:  7px; }
+#cstar-6 { font-size:  4px; }
+body.hovered .cursor-star { color: var(--signal); }
+body.lights-on .cursor-star { mix-blend-mode: multiply; }
+body.lights-on.hovered .cursor-star { color: var(--signal); }
+
 </style>
 </head>
 <body>
+<div id="cur">✦</div>
+<div class="cursor-star" id="cstar-1">✦</div>
+<div class="cursor-star" id="cstar-2">✦</div>
+<div class="cursor-star" id="cstar-3">✦</div>
+<div class="cursor-star" id="cstar-4">✦</div>
+<div class="cursor-star" id="cstar-5">✦</div>
+<div class="cursor-star" id="cstar-6">✦</div>
 <div id="flash" class="flash-overlay"></div>
-<div id="cur"></div>
-<div id="cur-ring"></div>
-
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
@@ -520,7 +561,7 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 const cur = document.getElementById('cur');
 const curR = document.getElementById('cur-ring');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+
 function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing);}
 animRing();
 document.querySelectorAll('a,button,label,.apn-item,.process-step').forEach(el=>{
@@ -582,6 +623,46 @@ document.querySelectorAll('.ransom-word').forEach(word => {
       if (char) char.style.animation = 'none';
     });
   });
+});
+
+
+// ── STAR CURSOR ──
+const cur = document.getElementById('cur');
+const cstars = [
+  document.getElementById('cstar-1'),
+  document.getElementById('cstar-2'),
+  document.getElementById('cstar-3'),
+  document.getElementById('cstar-4'),
+  document.getElementById('cstar-5'),
+  document.getElementById('cstar-6'),
+];
+const starLag = [0.22, 0.16, 0.12, 0.09, 0.07, 0.05];
+let mx = 0, my = 0;
+const pos = cstars.map(() => ({ x: 0, y: 0 }));
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px';
+  cur.style.top  = my + 'px';
+});
+
+(function animStars() {
+  cstars.forEach((star, i) => {
+    const src = i === 0 ? { x: mx, y: my } : pos[i - 1];
+    pos[i].x += (src.x - pos[i].x) * starLag[i];
+    pos[i].y += (src.y - pos[i].y) * starLag[i];
+    star.style.left = pos[i].x + 'px';
+    star.style.top  = pos[i].y + 'px';
+    const dx = mx - pos[i].x, dy = my - pos[i].y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    star.style.opacity = Math.max(0, Math.min(0.85, 1 - dist / 90));
+  });
+  requestAnimationFrame(animStars);
+})();
+
+document.querySelectorAll('a, button, .ransom-word, .work-thumb, .apn-item').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
 });
 
 </script>
