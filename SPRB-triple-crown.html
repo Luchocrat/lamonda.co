@@ -254,6 +254,23 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 .brief-heading strong { color:#BCA048; }
 .outcome-statement strong { color:#BCA048; }
 .f-loc { color:#BCA048; }
+
+/* ── RANSOM H1 HOVER ── */
+.ransom-word { display:inline-flex; align-items:baseline; gap:0; flex-wrap:nowrap; padding:20px 8px; margin:-20px -8px; }
+.ransom-letter { display:inline-block; position:relative; }
+.ransom-letter .ghost { visibility:hidden; display:block; pointer-events:none; font-family:var(--sans); font-weight:800; font-style:normal; white-space:pre; line-height:inherit; letter-spacing:inherit; }
+.ransom-letter .char { position:absolute; top:0; left:0; right:0; text-align:center; display:block; transform-origin:center bottom; will-change:transform,font-family; color:var(--bone); }
+@keyframes ransomChar {
+  0%   { transform:translateY(0) rotate(0deg) scale(1);     font-family:var(--sans);        font-weight:800; font-style:normal; }
+  12%  { transform:translateY(-.18em) rotate(-5deg) scale(1.18); font-family:var(--serif); font-weight:400; font-style:italic; }
+  26%  { transform:translateY(.14em) rotate(4deg) scale(.86);    font-family:var(--mono);   font-style:normal; }
+  42%  { transform:translateY(-.15em) rotate(-3deg) scale(1.15); font-family:var(--script); font-weight:400; font-style:normal; }
+  58%  { transform:translateY(.1em) rotate(2deg) scale(.92);     font-family:var(--blackletter); font-weight:400; }
+  74%  { transform:translateY(.06em) rotate(-1deg) scale(1.04);  font-family:var(--sans);   font-weight:800; }
+  88%  { transform:translateY(-.02em) rotate(.3deg) scale(1.01); font-family:var(--sans);   font-weight:800; }
+  100% { transform:translateY(0) rotate(0deg) scale(1);     font-family:var(--sans);        font-weight:800; font-style:normal; }
+}
+
 </style>
 </head>
 <body>
@@ -283,8 +300,9 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   <div class="proj-hero-content">
     <div class="proj-meta-col">
       <div class="proj-eyebrow">Brand Identity / Logo Design / Cannabis</div>
-      <h1 class="proj-title">TRIPLE
-CROWN<em>Brand Identity</em></h1>
+      <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">T</span><span class="char">T</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">P</span><span class="char">P</span></span><span class="ransom-letter"><span class="ghost">L</span><span class="char">L</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span></span>
+<span class="ransom-word"><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">R</span><span class="char">R</span></span><span class="ransom-letter"><span class="ghost">O</span><span class="char">O</span></span><span class="ransom-letter"><span class="ghost">W</span><span class="char">W</span></span><span class="ransom-letter"><span class="ghost">N</span><span class="char">N</span></span></span>
+<em>Brand Identity</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
@@ -474,6 +492,27 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Parallax hero grid
 const heroGrid = document.querySelector('.proj-hero-grid');
 if(heroGrid){window.addEventListener('scroll',()=>{const s=window.scrollY;heroGrid.style.transform=`translateY(${s*.3}px)`;},{ passive:true });}
+
+// ── RANSOM H1 ──
+document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
+  var letters = word.querySelectorAll('.ransom-letter');
+  word.addEventListener('mouseenter', function() {
+    letters.forEach(function(l, i) {
+      var ch = l.querySelector('.char');
+      if (!ch) return;
+      ch.style.animation = 'none';
+      void ch.offsetHeight;
+      ch.style.animation = 'ransomChar 0.52s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.055) + 's forwards';
+    });
+  });
+  word.addEventListener('mouseleave', function() {
+    letters.forEach(function(l) {
+      var ch = l.querySelector('.char');
+      if (ch) ch.style.animation = 'none';
+    });
+  });
+});
+
 </script>
 
 </body>
