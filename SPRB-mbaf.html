@@ -271,6 +271,20 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   100% { transform:translateY(0) rotate(0deg) scale(1);     font-family:var(--sans);        font-weight:800; font-style:normal; }
 }
 
+
+/* ── SECTION GHOST NUMBERS ── */
+.section-num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(80px,10vw,130px);
+  line-height: .88;
+  letter-spacing: -.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(63,85,245,.18);
+  pointer-events: none;
+  user-select: none;
+}
+
 </style>
 </head>
 <body>
@@ -320,6 +334,7 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <section class="brief-section">
   <div class="brief-img-col reveal">
     <div class="sec-label">The Brief</div>
+    <div class="section-num">01</div>
     <div class="brief-img">
       <div class="brief-img-inner"><img src="mbaf-rigid-box.jpg" alt="Made by a Farmer rigid box open" class="img-fill" style="width:100%;height:100%;object-fit:cover;"></div>
     </div>
@@ -392,7 +407,8 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 
 <!-- ══ OUTCOME ══ -->
 <section class="outcome-section">
-  <div class="outcome-header reveal">
+  <div class="section-num" style="padding:0 52px;margin-bottom:-48px;">03</div>
+<div class="outcome-header reveal">
     <div class="outcome-big-num">3</div>
     <p class="outcome-statement">The display launched and <strong>customers asked for the box.</strong> Not the product — the object itself. Three product lines later, the partnership is still going.</p>
   </div>
@@ -405,6 +421,7 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 <!-- ══ BRAND STANDARDS ══ -->
 <section class="brand-section reveal">
   <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
+  <div class="section-num" style="margin-bottom:32px;">04</div>
   <div class="bs-block">
     <div class="bs-block-label">Color Palette</div>
     <div class="palette-row"><div class="swatch" style="background:#0d1a0d;"><span class="swatch-name">Forest Deep</span><span class="swatch-hex">#0d1a0d</span></div>
