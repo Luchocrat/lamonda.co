@@ -541,12 +541,7 @@ body.lights-on.hovered .cursor-star { color: var(--signal); }
 
 <script>
 // Cursor
-const cur = document.getElementById('cur');
-const curR = document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
 
-function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing);}
-animRing();
 document.querySelectorAll('a,button,label,.apn-item,.process-step').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
