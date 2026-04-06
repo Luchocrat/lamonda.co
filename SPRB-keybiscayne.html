@@ -324,7 +324,7 @@ body { --project-accent: #E63946; }
 }
 /* ── SECTION WATERMARKS ── */
 .section-watermark {
-  position:absolute; top:32px; left:40px;
+  position:absolute; bottom:-20px; right:40px; top:auto; left:auto; opacity:0.6;
   font-family:var(--sans); font-weight:800;
   font-size:clamp(80px,10vw,140px);
   line-height:1; letter-spacing:-.05em;
@@ -333,9 +333,68 @@ body { --project-accent: #E63946; }
   pointer-events:none; user-select:none; z-index:0;
 }
 
+
+/* ── ALL PROJECTS WORK ROWS (homepage style) ── */
+.all-projects-nav { padding:80px 52px 0; border-top:1px solid var(--bone-ghost); }
+.apn-heading { font-family:var(--mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:32px;display:flex;align-items:center;gap:12px; }
+.apn-heading::before { content:'';display:block;width:28px;height:1px;background:var(--bone-dim); }
+.work-list { display:flex;flex-direction:column;gap:2px; }
+.work-thumb {
+  position:fixed;width:320px;height:240px;pointer-events:none;z-index:800;opacity:0;overflow:hidden;
+  transform:translate(-50%,-50%) rotate(-2deg) scale(0.92);
+  transition:opacity .12s ease,transform .18s cubic-bezier(.16,1,.3,1);
+  will-change:transform,opacity,left,top;border:1px solid rgba(63,85,245,.3);
+}
+.work-thumb.visible { opacity:1;transform:translate(-50%,-50%) rotate(0deg) scale(1); }
+.work-thumb img { width:100%;height:100%;object-fit:cover;display:block; }
+.work-thumb::before,.work-thumb::after { content:'';position:absolute;inset:0;opacity:0;mix-blend-mode:screen;pointer-events:none; }
+.work-thumb.glitch img { animation:glitchImg .25s steps(1,end) forwards; }
+.work-thumb.glitch::before { animation:glitchR .25s steps(1,end) forwards;background:rgba(255,0,60,.25);clip-path:inset(20% 0 60% 0);transform:translateX(4px); }
+.work-thumb.glitch::after  { animation:glitchB .25s steps(1,end) forwards;background:rgba(0,200,255,.2);clip-path:inset(50% 0 15% 0);transform:translateX(-4px); }
+@keyframes glitchImg {
+  0%  {clip-path:inset(0 0 0 0);transform:translateX(0);}
+  15% {clip-path:inset(15% 0 70% 0);transform:translateX(6px);}
+  30% {clip-path:inset(60% 0 10% 0);transform:translateX(-5px);}
+  45% {clip-path:inset(35% 0 40% 0);transform:translateX(3px);}
+  60% {clip-path:inset(5% 0 85% 0);transform:translateX(-4px);}
+  75%,100% {clip-path:inset(0 0 0 0);transform:translateX(0);}
+}
+@keyframes glitchR { 0%,100%{opacity:0;} 15%,45%{opacity:1;} 30%{opacity:0;} 60%,75%{opacity:1;} 80%{opacity:0;} }
+@keyframes glitchB { 0%,100%{opacity:0;} 20%,50%{opacity:1;} 35%{opacity:0;} 65%,78%{opacity:1;} 83%{opacity:0;} }
+.work-thumb-scanlines { position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.18) 2px,rgba(0,0,0,.18) 4px);pointer-events:none;z-index:2; }
+.work-thumb-label { position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:rgba(6,6,10,.75);font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--signal);z-index:3;backdrop-filter:blur(4px); }
+.work-row {
+  display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:0;
+  padding:22px 52px;border-top:1px solid var(--bone-ghost);
+  position:relative;cursor:none;overflow:hidden;
+  transition:background .2s ease;text-decoration:none;color:inherit;
+}
+.work-row:last-child { border-bottom:1px solid var(--bone-ghost); }
+.work-row::before { content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--cobalt-bright);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1); }
+.work-row:hover::before { transform:scaleX(1); }
+.work-row.active { background:rgba(63,85,245,.04); }
+.work-num { font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--bone-dim);padding-left:0;transition:color .2s; }
+.work-row:hover .work-num { color:var(--cobalt-bright); }
+.work-center { display:flex;flex-direction:column;gap:4px; }
+.work-type { font-family:var(--mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--bone-dim);transition:color .2s; }
+.work-row:hover .work-type { color:var(--signal); }
+.work-title { font-family:var(--sans);font-weight:800;font-size:clamp(22px,2.8vw,38px);letter-spacing:-.02em;line-height:1;color:var(--bone);transition:letter-spacing .3s cubic-bezier(.4,0,.2,1); }
+.work-row:hover .work-title { letter-spacing:.01em; }
+.work-right { display:flex;align-items:center;gap:20px; }
+.work-year { font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--bone-dim);transition:color .2s; }
+.work-arrow { font-size:18px;color:var(--bone-dim);transition:transform .3s cubic-bezier(.4,0,.2,1),color .2s; }
+.work-row:hover .work-arrow { transform:translateX(6px);color:var(--cobalt-bright); }
+/* Shrink color swatches */
+.swatch { flex:1;min-width:72px;aspect-ratio:unset;height:48px;border-radius:2px;display:flex;flex-direction:column;justify-content:flex-end;padding:6px 8px;overflow:hidden; }
+
 </style>
 </head>
 <body>
+<div class="work-thumb" id="workThumb" aria-hidden="true">
+  <img id="workThumbImg" src="" alt="">
+  <div class="work-thumb-scanlines"></div>
+  <div class="work-thumb-label" id="workThumbLabel"></div>
+</div>
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
@@ -388,13 +447,7 @@ body { --project-accent: #E63946; }
 <section class="brief-section" style="position:relative;">
   <div class="section-watermark">01</div>
   <div class="brief-img-col reveal" style="position:relative;z-index:1;">
-    <div class="sec-label">The Brief</div>
-    <div class="brief-img"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:18px;opacity:.35;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 02</div>
-  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Parade poster — hero</div>
-  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">1:1 sq</div>
-</div></div>
+    <div class="sec-label">The Brief</div></div>
   </div>
   <div class="brief-text-col reveal reveal-delay-2" style="position:relative;z-index:1;">
     <h2 class="brief-heading">A commemorative identity for a <strong>64-year tradition.</strong></h2>
@@ -438,15 +491,7 @@ body { --project-accent: #E63946; }
   <div><div class="step-title">Across Every Surface</div><div class="step-desc">Street banners, tote bags, trucker hats, parade programs, commemorative prints. The identity scales from a 3-foot banner to a 2-inch button without losing a single line.</div></div>
 </div></div>
 </section>
-
-<!-- ══ GALLERY ══ -->
-<div class="gallery-section">
-  <div class="gallery-left reveal"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:18px;opacity:.35;">⬚</div>
-  <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 05</div>
-  <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Tote bag — merchandise</div>
-  <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">4:3</div>
-</div></div>
+</div>
   <div class="gallery-right">
     <div class="gallery-right-top reveal reveal-delay-1"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
   <div style="font-size:18px;opacity:.35;">⬚</div>
@@ -464,8 +509,6 @@ body { --project-accent: #E63946; }
     <div class="outcome-big-num">64</div>
     <p class="outcome-statement">A commemorative identity for a <strong>64-year tradition.</strong> Collectible by design. The kind of work a community keeps.</p>
   </div>
-  <div class="outcome-img reveal" style="aspect-ratio:16/5;overflow:hidden;margin-bottom:3px;position:relative;z-index:1;"><div style="width:100%;height:100%;min-height:180px;background:#002244;border:1.5px dashed #E63946;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:16px;box-sizing:border-box;text-align:center;font-family:'Syne Mono',monospace;">
-  <div style="font-size:18px;opacity:.35;">⬚</div>
   <div style="font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:#E63946;opacity:.8;">Slot 07</div>
   <div style="font-size:9px;color:rgba(237,232,223,.5);letter-spacing:.05em;">Identity in situ — parade day</div>
   <div style="margin-top:6px;padding:3px 8px;background:#E63946;color:#000;font-size:7px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;opacity:.9;">16:9</div>
@@ -477,7 +520,6 @@ body { --project-accent: #E63946; }
 <section class="brand-section reveal" style="position:relative;">
   <div class="section-watermark">04</div>
   <div style="position:relative;z-index:1;">
-    <div class="sec-label" style="margin-bottom:48px;">Brand Standards</div>
     <div class="bs-block">
       <div class="bs-block-label">Color Palette</div>
       <div class="palette-row"><div class="swatch" style="background:#002244;"><span class="swatch-name">Deep Navy</span><span class="swatch-hex">#002244</span></div><div class="swatch" style="background:#E63946;"><span class="swatch-name">Parade Red</span><span class="swatch-hex">#E63946</span></div><div class="swatch" style="background:#F5F5DC;"><span class="swatch-name">Bone White</span><span class="swatch-hex">#F5F5DC</span></div></div>
@@ -509,9 +551,88 @@ body { --project-accent: #E63946; }
 
 
 
-<!-- ══ ALL PROJECTS ══ -->
-<div class="all-projects-nav reveal">
-  <div class="apn-label">All Projects</div>
+<div class="all-projects-nav">
+  <div class="apn-heading">All Projects</div>
+  <div class="work-list">
+    <a href="SPRB-triple-crown.html" class="work-row reveal" data-thumb="thumb-triple-crown-opt.jpg" data-thumb-label="Brand Identity · Cannabis CPG" style="text-decoration:none;color:inherit;">
+      <span class="work-num">01</span>
+      <div class="work-center">
+        <div class="work-type">Brand Identity · Logo · Cannabis CPG</div>
+        <span class="work-title">Triple Crown</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2024</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-mbaf.html" class="work-row reveal reveal-delay-1" data-thumb="thumb-mbaf-opt.jpg" data-thumb-label="Structural Design · Packaging" style="text-decoration:none;color:inherit;">
+      <span class="work-num">02</span>
+      <div class="work-center">
+        <div class="work-type">Structural Design · Packaging · POP Display</div>
+        <span class="work-title">Made by a Farmer</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2024</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-litlabs.html" class="work-row reveal reveal-delay-2" data-thumb="thumb-litlabs-opt.jpg" data-thumb-label="Sub-Brand · Mylar Packaging" style="text-decoration:none;color:inherit;">
+      <span class="work-num">03</span>
+      <div class="work-center">
+        <div class="work-type">Sub-Brand · Mylar Packaging · Custom Lettering</div>
+        <span class="work-title">Lit Labs</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2024</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-properroots.html" class="work-row reveal reveal-delay-3" data-thumb="thumb-properroots-opt.jpg" data-thumb-label="Brand Refresh · Packaging" style="text-decoration:none;color:inherit;">
+      <span class="work-num">04</span>
+      <div class="work-center">
+        <div class="work-type">Brand Refresh · Packaging System · Structural</div>
+        <span class="work-title">Proper Roots</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2023</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-socialyaks.html" class="work-row reveal reveal-delay-4" data-thumb="thumb-socialyaks-opt.jpg" data-thumb-label="Card Game · Illustration" style="text-decoration:none;color:inherit;">
+      <span class="work-num">05</span>
+      <div class="work-center">
+        <div class="work-type">Card Game Design · Illustration · Community</div>
+        <span class="work-title">Social Yaks</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2022</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-shootmytravel.html" class="work-row reveal reveal-delay-5" data-thumb="thumb-shootmytravel-opt.jpg" data-thumb-label="Brand Identity · UX Strategy" style="text-decoration:none;color:inherit;">
+      <span class="work-num">06</span>
+      <div class="work-center">
+        <div class="work-type">Brand Identity · UX Strategy · Travel Tech</div>
+        <span class="work-title">Shoot My Travel</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2023</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+    <a href="SPRB-keybiscayne.html" class="work-row reveal reveal-delay-6 active" data-thumb="thumb-keybiscayne-opt.jpg" data-thumb-label="Lettering · Event Branding" style="text-decoration:none;color:inherit;">
+      <span class="work-num">07</span>
+      <div class="work-center">
+        <div class="work-type">Lettering · Illustration · Event Branding</div>
+        <span class="work-title">Key Biscayne</span>
+      </div>
+      <div class="work-right">
+        <span class="work-year">2024</span>
+        <span class="work-arrow">→</span>
+      </div>
+    </a>
+  </div>
+</div>
   <a href="SPRB-triple-crown.html" class="apn-item"><span class="apn-num">01</span><span class="apn-name">Triple Crown</span><span class="apn-cat">Branding</span></a>
 <a href="SPRB-mbaf.html" class="apn-item"><span class="apn-num">02</span><span class="apn-name">MBAF</span><span class="apn-cat">Packaging</span></a>
 <a href="SPRB-litlabs.html" class="apn-item"><span class="apn-num">03</span><span class="apn-name">Lit Labs</span><span class="apn-cat">Sub-Brand</span></a>
@@ -594,6 +715,35 @@ document.querySelectorAll('h1 .ransom-word').forEach(function(word) {
     });
   });
 });
+
+
+// ── GLITCH THUMBNAIL (homepage style) ──
+(function() {
+  var thumb     = document.getElementById('workThumb');
+  var thumbImg  = document.getElementById('workThumbImg');
+  var thumbLbl  = document.getElementById('workThumbLabel');
+  if (!thumb) return;
+  var rows = document.querySelectorAll('.work-row[data-thumb]');
+  var currentSrc = '', glitchTimer = null, rafId = null, tx=0,ty=0,cx=0,cy=0;
+  document.addEventListener('mousemove', function(e){ tx=e.clientX; ty=e.clientY; });
+  function animThumb(){ cx+=(tx-cx)*.12; cy+=(ty-cy)*.12; thumb.style.left=cx+'px'; thumb.style.top=cy+'px'; rafId=requestAnimationFrame(animThumb); }
+  function triggerGlitch(){ thumb.classList.add('glitch'); setTimeout(function(){ thumb.classList.remove('glitch'); },260); }
+  rows.forEach(function(row){
+    row.addEventListener('mouseenter', function(){
+      var src=row.dataset.thumb, label=row.dataset.thumbLabel||'';
+      if(src!==currentSrc){ thumbImg.src=src; thumbLbl.textContent=label; currentSrc=src; setTimeout(triggerGlitch,60); }
+      thumb.classList.add('visible');
+      if(!rafId) animThumb();
+      function schedGlitch(){ glitchTimer=setTimeout(function(){ if(thumb.classList.contains('visible')){ triggerGlitch(); schedGlitch(); } }, 800+Math.random()*1600); }
+      schedGlitch();
+    });
+    row.addEventListener('mouseleave', function(){
+      thumb.classList.remove('visible');
+      clearTimeout(glitchTimer);
+      if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+    });
+  });
+})();
 
 </script>
 
