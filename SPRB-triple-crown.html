@@ -1315,6 +1315,137 @@ body.hovered #cur { background: var(--signal) !important; }
   .next-name { font-size: clamp(32px, 8vw, 52px); }
 }
 
+/* ══════════════════════════
+   MERCH / APPAREL SECTION
+══════════════════════════ */
+.merch-section {
+  padding: 120px 52px;
+  border-top: 1px solid var(--bone-ghost);
+  position: relative;
+  overflow: hidden;
+}
+.merch-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(188,160,72,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.merch-header {
+  margin-bottom: 72px;
+  max-width: 640px;
+}
+.merch-title {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(44px, 6vw, 88px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--bone);
+  margin: 16px 0 20px;
+}
+.merch-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.6vw, 20px);
+  color: var(--bone-dim);
+  line-height: 1.6;
+}
+.merch-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  margin-bottom: 80px;
+}
+.merch-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.merch-img-wrap {
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.merch-img-wrap:hover {
+  transform: scale(1.02);
+}
+.merch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center 85%;
+  display: block;
+  filter: drop-shadow(0 20px 48px rgba(0,0,0,0.7));
+  transform: scale(1.12) translateY(-4%);
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1), filter 0.6s;
+}
+.merch-img-wrap:hover .merch-img {
+  transform: translateY(-4%) scale(1.04);
+  filter: drop-shadow(0 32px 64px rgba(0,0,0,0.9));
+}
+.merch-caption {
+  padding: 14px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--bone-ghost);
+}
+.merch-cap-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #BCA048;
+}
+.merch-cap-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--bone);
+  letter-spacing: 0.02em;
+}
+
+/* Strategy note */
+.merch-strategy {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 80px;
+  padding-top: 60px;
+  border-top: 1px solid var(--bone-ghost);
+}
+.merch-strat-label {}
+.merch-strat-body {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.75;
+  color: var(--bone-dim);
+  max-width: 700px;
+}
+.merch-strat-body p + p {
+  margin-top: 18px;
+}
+
+@media (max-width: 1024px) {
+  .merch-section { padding: 80px 36px; }
+  .merch-grid { grid-template-columns: repeat(3, 1fr); }
+  .merch-strategy { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 768px) {
+  .merch-section { padding: 64px 20px; }
+  .merch-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+  .merch-title { font-size: clamp(40px, 10vw, 64px); }
+}
+@media (max-width: 480px) {
+  .merch-grid { grid-template-columns: 1fr 1fr; }
+}
+
+
 </style>
 </head>
 <body>
@@ -1697,6 +1828,79 @@ body.hovered #cur { background: var(--signal) !important; }
     </div>
   </div>
 </section>
+
+<!-- ══ MERCH / APPAREL ══ -->
+<section class="merch-section">
+  <div class="merch-header reveal">
+    <div class="section-marker">Apparel</div>
+    <h2 class="merch-title">Wear the Crown</h2>
+    <p class="merch-sub">Five limited drops. Navy &amp; army. Gothic streetwear meets premium cannabis culture.</p>
+  </div>
+
+  <div class="merch-grid">
+    <div class="merch-item reveal reveal-delay-1">
+      <div class="merch-img-wrap" style="background:#0E4174;">
+        <img src="tc-hoodie-v1.png" alt="Triple Crown Navy Gold Logo Hoodie" class="merch-img" loading="lazy">
+      </div>
+      <div class="merch-caption">
+        <span class="merch-cap-label">Drop 01</span>
+        <span class="merch-cap-name">Gold Crest — Navy</span>
+      </div>
+    </div>
+
+    <div class="merch-item reveal reveal-delay-2">
+      <div class="merch-img-wrap" style="background:#3a3318;">
+        <img src="tc-hoodie-v2.png" alt="Triple Crown Army All-Over Pattern Hoodie" class="merch-img" loading="lazy">
+      </div>
+      <div class="merch-caption">
+        <span class="merch-cap-label">Drop 02</span>
+        <span class="merch-cap-name">Monogram AOP — Army</span>
+      </div>
+    </div>
+
+    <div class="merch-item reveal reveal-delay-3">
+      <div class="merch-img-wrap" style="background:#2d2910;">
+        <img src="tc-hoodie-v3.png" alt="Triple Crown Army Chest Logo Hoodie" class="merch-img" loading="lazy">
+      </div>
+      <div class="merch-caption">
+        <span class="merch-cap-label">Drop 03</span>
+        <span class="merch-cap-name">Tonal Chest — Army</span>
+      </div>
+    </div>
+
+    <div class="merch-item reveal reveal-delay-1">
+      <div class="merch-img-wrap" style="background:#08194d;">
+        <img src="tc-hoodie-v4.png" alt="Triple Crown Navy Cloud Storm Hoodie" class="merch-img" loading="lazy">
+      </div>
+      <div class="merch-caption">
+        <span class="merch-cap-label">Drop 04</span>
+        <span class="merch-cap-name">Cloud Storm — Navy</span>
+      </div>
+    </div>
+
+    <div class="merch-item reveal reveal-delay-2">
+      <div class="merch-img-wrap" style="background:#0d0834;">
+        <img src="tc-hoodie-v5.png" alt="Triple Crown Navy Royal Knight Sleeve Hoodie" class="merch-img" loading="lazy">
+      </div>
+      <div class="merch-caption">
+        <span class="merch-cap-label">Drop 05</span>
+        <span class="merch-cap-name">Royal Knight — Navy</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Merch strategy note -->
+  <div class="merch-strategy reveal">
+    <div class="merch-strat-label">
+      <span class="section-marker" style="display:inline-flex;margin-bottom:0;">Brand Extension</span>
+    </div>
+    <div class="merch-strat-body">
+      <p>Apparel was designed as a natural extension of the Triple Crown identity system — not a merchandise afterthought. Each drop maps to a visual chapter: the gold crest grounds the core identity, the all-over monogram signals status, and the narrative prints (cloud storm, royal knight) deepen the brand mythology.</p>
+      <p>By keeping the Gothic wordmark consistent across all colorways, the collection builds brand equity across every wear — each hoodie is a moving billboard for the premium cannabis label.</p>
+    </div>
+  </div>
+</section>
+
 
 <!-- ══ ALL PROJECTS ══ -->
 <div class="all-projects-nav">
