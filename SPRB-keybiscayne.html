@@ -33,7 +33,12 @@ body::after { content:''; position:fixed; inset:0; z-index:9000; pointer-events:
   background-size:180px; }
 
 /* CURSOR */
-body.hovered body.hovered /* NAV */
+#cur { width:10px;height:10px;background:var(--cobalt-bright);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .3s,height .3s,background .3s; }
+#cur-ring { width:36px;height:36px;border:1px solid rgba(63,85,245,0.5);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s,height .4s,border-color .3s; }
+body.hovered #cur { background:var(--signal);width:14px;height:14px; }
+body.hovered #cur-ring { width:56px;height:56px;border-color:rgba(157,255,91,0.4); }
+
+/* NAV */
 nav { position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:32px 52px; }
 nav::after { content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,6,10,.85),transparent);pointer-events:none;z-index:-1; }
 .nav-logo { font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;transition:color .3s; }
@@ -121,15 +126,13 @@ body.lights-on .switch-label { color:rgba(10,10,16,.45); }
 
 /* ── GALLERY SPLIT ── */
 .gallery-section { border-top:1px solid var(--bone-ghost);display:grid;grid-template-columns:1fr 1fr;gap:3px; }
-
+.gallery-left { aspect-ratio:4/3; }
 .gallery-left-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .gallery-left:hover .gallery-left-inner { transform:scale(1.03); }
 .gallery-right { display:grid;grid-template-rows:auto;gap:3px; }
 .gallery-right-top { aspect-ratio:4/3;overflow:hidden;position:relative; }
 .gallery-right-top-inner { width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .gallery-right-top:hover .gallery-right-top-inner { transform:scale(1.03); }
-/* ── OUTCOME ── */
-.outcome-section { padding:96px 52px;border-top:1px solid var(--bone-ghost);background:var(--void-2);position:relative;overflow:hidden; }
 .outcome-section::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,var(--cobalt-glow) 0%,transparent 65%);pointer-events:none; }
 .outcome-header { display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:start;margin-bottom:64px; }
 .outcome-big-num { font-family:var(--sans);font-weight:800;font-size:clamp(80px,12vw,160px);line-height:.88;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(63,85,245,.25);position:relative;z-index:2; }
@@ -213,8 +216,8 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
   .pair-section { grid-template-columns:1fr; }
   .pair-img { aspect-ratio:16/9; }
   .gallery-section { grid-template-columns:1fr; }
-  
-  .gallery-right { grid-template-rows:auto auto; }
+  .gallery-left { aspect-ratio:4/3; }
+  .gallery-right { grid-template-rows:auto; }
   .gallery-right-top { aspect-ratio:4/3; }
   .apn-grid { grid-template-columns:repeat(4,1fr); }
   .outcome-metrics { grid-template-columns:repeat(3,1fr); }
@@ -251,117 +254,13 @@ footer { padding:32px 52px;border-top:1px solid var(--bone-ghost);display:flex;j
 .brief-heading strong { color:#E63946; }
 .outcome-statement strong { color:#E63946; }
 .f-loc { color:#E63946; }
-
-
-
-
-/* ── RANSOM LETTER EFFECT ── */
-.ransom-word {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0;
-  flex-wrap: nowrap;
-  padding: 24px 12px;
-  margin: -24px -12px;
-  cursor: none;
-}
-.ransom-letter {
-  display: inline-block;
-  position: relative;
-}
-.ransom-letter .ghost {
-  visibility: hidden;
-  display: block;
-  pointer-events: none;
-  font-family: var(--sans);
-  font-weight: 800;
-  font-style: normal;
-  white-space: pre;
-  line-height: inherit;
-}
-.ransom-letter .char {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  text-align: center;
-  display: block;
-  transform-origin: center bottom;
-  will-change: transform, font-family;
-}
-.proj-title .ransom-word:not(.is-italic) .char {
-  color: var(--bone);
-}
-.proj-title /* Font-only shuffle — NO color changes, snaps back to original typeface */
-@keyframes ransomCharProj {
-  0%   { transform: translateY(0) rotate(0deg) scale(1);
-           font-family: var(--sans); font-weight: 800; font-style: normal; }
-  12%  { transform: translateY(-0.18em) rotate(-5deg) scale(1.18);
-           font-family: var(--serif); font-weight: 400; font-style: italic; }
-  26%  { transform: translateY(0.14em) rotate(4deg) scale(0.86);
-           font-family: var(--mono); font-style: normal; }
-  42%  { transform: translateY(-0.15em) rotate(-3deg) scale(1.15);
-           font-family: var(--script); font-weight: 400; font-style: normal; }
-  58%  { transform: translateY(0.1em) rotate(2deg) scale(0.92);
-           font-family: var(--blackletter); font-weight: 400; }
-  74%  { transform: translateY(0.06em) rotate(-1deg) scale(1.04);
-           font-family: var(--sans); font-weight: 800; }
-  88%  { transform: translateY(-0.02em) rotate(0.3deg) scale(1.01);
-           font-family: var(--sans); font-weight: 800; }
-  100% { transform: translateY(0) rotate(0deg) scale(1);
-           font-family: var(--sans); font-weight: 800; font-style: normal; }
-}
-
-/* ── STAR CURSOR ── */
-#cur {
-  position: fixed; top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  color: var(--cobalt-bright);
-  font-size: 22px;
-  line-height: 1;
-  mix-blend-mode: exclusion;
-  will-change: left, top;
-  transition: color 0.25s, font-size 0.2s;
-  user-select: none;
-}
-body.hovered #cur { color: var(--signal); font-size: 28px; }
-body.lights-on #cur { mix-blend-mode: multiply; }
-body.lights-on.hovered #cur { color: var(--signal); }
-
-.cursor-star {
-  position: fixed; top: 0; left: 0;
-  pointer-events: none;
-  z-index: 9997;
-  transform: translate(-50%, -50%);
-  color: var(--cobalt-bright);
-  line-height: 1;
-  opacity: 0;
-  mix-blend-mode: exclusion;
-  will-change: left, top, opacity;
-  user-select: none;
-  transition: color 0.25s;
-}
-#cstar-1 { font-size: 20px; }
-#cstar-2 { font-size: 16px; }
-#cstar-3 { font-size: 13px; }
-#cstar-4 { font-size: 10px; }
-#cstar-5 { font-size:  7px; }
-#cstar-6 { font-size:  4px; }
-body.hovered .cursor-star { color: var(--signal); }
-body.lights-on .cursor-star { mix-blend-mode: multiply; }
-body.lights-on.hovered .cursor-star { color: var(--signal); }
-
 </style>
 </head>
 <body>
-<div id="cur">✦</div>
-<div class="cursor-star" id="cstar-1">✦</div>
-<div class="cursor-star" id="cstar-2">✦</div>
-<div class="cursor-star" id="cstar-3">✦</div>
-<div class="cursor-star" id="cstar-4">✦</div>
-<div class="cursor-star" id="cstar-5">✦</div>
-<div class="cursor-star" id="cstar-6">✦</div>
 <div id="flash" class="flash-overlay"></div>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
 <!-- NAV -->
 <nav>
   <a href="index.html" class="nav-logo">Lucho Escobar</a>
@@ -384,9 +283,8 @@ body.lights-on.hovered .cursor-star { color: var(--signal); }
   <div class="proj-hero-content">
     <div class="proj-meta-col">
       <div class="proj-eyebrow">Lettering for Branding / City Events / Illustration</div>
-      <h1 class="proj-title"><span class="ransom-word"><span class="ransom-letter"><span class="ghost">K</span><span class="char">K</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span></span>
-<span class="ransom-word"><span class="ransom-letter"><span class="ghost">B</span><span class="char">B</span></span><span class="ransom-letter"><span class="ghost">I</span><span class="char">I</span></span><span class="ransom-letter"><span class="ghost">S</span><span class="char">S</span></span><span class="ransom-letter"><span class="ghost">C</span><span class="char">C</span></span><span class="ransom-letter"><span class="ghost">A</span><span class="char">A</span></span><span class="ransom-letter"><span class="ghost">Y</span><span class="char">Y</span></span><span class="ransom-letter"><span class="ghost">N</span><span class="char">N</span></span><span class="ransom-letter"><span class="ghost">E</span><span class="char">E</span></span></span>
-<em>Fourth of July</em></h1>
+      <h1 class="proj-title">KEY
+BISCAYNE<em>Fourth of July</em></h1>
     </div>
     <div class="proj-info-col">
       <div class="proj-specs">
@@ -564,7 +462,12 @@ body.lights-on.hovered .cursor-star { color: var(--signal); }
 
 <script>
 // Cursor
-
+const cur = document.getElementById('cur');
+const curR = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animRing);}
+animRing();
 document.querySelectorAll('a,button,label,.apn-item,.process-step').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hovered'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hovered'));
@@ -582,90 +485,6 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 // Parallax hero grid
 const heroGrid = document.querySelector('.proj-hero-grid');
 if(heroGrid){window.addEventListener('scroll',()=>{const s=window.scrollY;heroGrid.style.transform=`translateY(${s*.3}px)`;},{ passive:true });}
-
-  });
-  word.addEventListener('mouseleave', () => {
-    letters.forEach(l => {
-      const char = l.querySelector('.char');
-      if (char) char.style.animation = 'none';
-    });
-  });
-});
-
-
-  });
-  word.addEventListener('mouseleave', () => {
-    letters.forEach(l => {
-      const char = l.querySelector('.char');
-      if (char) char.style.animation = 'none';
-    });
-  });
-});
-
-
-// ── RANSOM LETTER STAGGER ──
-document.querySelectorAll('.ransom-word').forEach(word => {
-  const letters = word.querySelectorAll('.ransom-letter');
-  const isItalic = word.classList.contains('is-italic');
-  word.addEventListener('mouseenter', () => {
-    letters.forEach((l, i) => {
-      const char = l.querySelector('.char');
-      if (!char) return;
-      char.style.animation = 'none';
-      void char.offsetHeight;
-      char.style.animation = isItalic
-        ? `ransomCharItalicProj 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`
-        : `ransomCharProj 0.52s cubic-bezier(0.4,0,0.2,1) ${i * 0.055}s forwards`;
-    });
-  });
-  word.addEventListener('mouseleave', () => {
-    letters.forEach(l => {
-      const char = l.querySelector('.char');
-      if (char) char.style.animation = 'none';
-    });
-  });
-});
-
-
-// ── STAR CURSOR ──
-const cur = document.getElementById('cur');
-const cstars = [
-  document.getElementById('cstar-1'),
-  document.getElementById('cstar-2'),
-  document.getElementById('cstar-3'),
-  document.getElementById('cstar-4'),
-  document.getElementById('cstar-5'),
-  document.getElementById('cstar-6'),
-];
-const starLag = [0.22, 0.16, 0.12, 0.09, 0.07, 0.05];
-let mx = 0, my = 0;
-const pos = cstars.map(() => ({ x: 0, y: 0 }));
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  cur.style.left = mx + 'px';
-  cur.style.top  = my + 'px';
-});
-
-(function animStars() {
-  cstars.forEach((star, i) => {
-    const src = i === 0 ? { x: mx, y: my } : pos[i - 1];
-    pos[i].x += (src.x - pos[i].x) * starLag[i];
-    pos[i].y += (src.y - pos[i].y) * starLag[i];
-    star.style.left = pos[i].x + 'px';
-    star.style.top  = pos[i].y + 'px';
-    const dx = mx - pos[i].x, dy = my - pos[i].y;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    star.style.opacity = Math.max(0, Math.min(0.85, 1 - dist / 90));
-  });
-  requestAnimationFrame(animStars);
-})();
-
-document.querySelectorAll('a, button, .ransom-word, .work-thumb, .apn-item').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovered'));
-});
-
 </script>
 
 </body>
